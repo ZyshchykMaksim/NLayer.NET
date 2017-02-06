@@ -1,26 +1,30 @@
-﻿using NLayer.NET.BLL.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NLayer.NET.BLL.Modals;
-using NLayer.NET.DAL.Core;
-using NLayer.NET.DBL.EF;
 using NLayer.NET.DBL.Entities;
 using AutoMapper;
+using NLayer.NET.DBL;
+using NLayer.NET.DBL.Infrastructure;
 
 namespace NLayer.NET.BLL.Services
 {
+    public interface IUserService
+    {
+        IList<UserModel> GetUsers();
+        UserModel GetUser(Guid idUser);
+        bool Exists(Guid idUser);
+    }
+
     public class UserService : IUserService
     {
-        private readonly IUnitOfWork<AppDbContext> _db;
         private readonly IRepository<User> _userRepository;
 
         public UserService(IUnitOfWork<AppDbContext> unitOfWork)
         {
-            _db = unitOfWork;
-            _userRepository = _db.CreateGenericRepository<User>();
+            _userRepository = unitOfWork.CreateGenericRepository<User>();
         }
 
         public IList<UserModel> GetUsers()
