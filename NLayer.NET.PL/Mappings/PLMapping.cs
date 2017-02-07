@@ -14,7 +14,7 @@ namespace NLayer.NET.PL.Mappings
 
         public PLMapping()
         {
-            CreateMap<UserModel, UserModelView>();
+            CreateMap<UserDTO, UserModelView>();
         }
     }
 }

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using NLayer.NET.BLL.Modals;
 using NLayer.NET.DBL.Entities;
 
-namespace NLayer.NET.BLL
+namespace NLayer.NET.BLL.Mappings
 {
     public class BLLMapping : Profile
     {
@@ -15,7 +10,7 @@ namespace NLayer.NET.BLL
 
         public BLLMapping()
         {
-            CreateMap<User, UserModel>();
+            CreateMap<User, UserDTO>();
         }
     }
 }

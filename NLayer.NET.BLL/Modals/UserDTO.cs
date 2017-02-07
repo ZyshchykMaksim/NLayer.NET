@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NLayer.NET.BLL.Modals
 {
-    public class UserModel
+    public class UserDTO
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

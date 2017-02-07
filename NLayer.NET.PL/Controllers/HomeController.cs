@@ -20,7 +20,7 @@ namespace NLayer.NET.PL.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            IList<UserModel> users = _userService.GetUsers();
+            IList<UserDTO> users = _userService.GetUsers();
             return View();
         }
     }

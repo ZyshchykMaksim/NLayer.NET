@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
-using NLayer.NET.BLL.Services;
-using NLayer.NET.DBL;
-using NLayer.NET.DBL.Infrastructure;
+
+using NLayer.NET.BLL.IoC;
+using NLayer.NET.PL.IoC;
 
 namespace NLayer.NET.PL
 {
@@ -19,11 +14,9 @@ namespace NLayer.NET.PL
             var builder = new ContainerBuilder();
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
-            builder.RegisterType<AppDbContext>().As<DbContext>();
-            builder.RegisterType<UserService>().As<IUserService>();
-            builder.RegisterGeneric(typeof(UnitOfWork<>)).As(typeof(IUnitOfWork<>));
-            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>));
-            
+            builder.RegisterModule(new BLLModule());
+            builder.RegisterModule(new PLModule());
+
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
