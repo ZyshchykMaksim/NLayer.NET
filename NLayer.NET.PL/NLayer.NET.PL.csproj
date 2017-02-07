@@ -156,10 +156,6 @@
       <Project>{6cfdeb6d-dd02-42e3-a44a-82c35e248c1d}</Project>
       <Name>NLayer.NET.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NLayer.NET.DBL\NLayer.NET.DAL.csproj">
-      <Project>{23b32caa-b32f-47a0-b99f-682a07e27721}</Project>
-      <Name>NLayer.NET.DAL</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

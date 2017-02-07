@@ -11,7 +11,9 @@ namespace NLayer.NET.PL.IoC
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<UserService>().As<IUserService>();
+            //builder.RegisterType<UserService>().As<IUserService>();
+
+            builder.RegisterAssemblyTypes(typeof(UserService).Assembly).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerRequest();
         }
     }
 }
