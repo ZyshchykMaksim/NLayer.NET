@@ -15,11 +15,11 @@ namespace NLayer.NET.DBL
 
         public AppDbContext() : base("name=DefaultConnection") { }
 
-        public AppDbContext(string connectionString) : base(connectionString)
-        {
-            if (String.IsNullOrWhiteSpace(connectionString))
-                throw new ArgumentException("Invalid connection string");
-        }
+        //public AppDbContext(string connectionString) : base(connectionString)
+        //{
+        //    if (String.IsNullOrWhiteSpace(connectionString))
+        //        throw new ArgumentException("Invalid connection string");
+        //}
 
         /// <summary>
         /// Save changes

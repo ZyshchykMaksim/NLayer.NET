@@ -14,18 +14,16 @@ namespace NLayer.NET.PL
 {
     public class AutofacConfig
     {
-        public static void ConfigureContainer()
+        public static void Configure()
         {
-            //TODO Close exception
             var builder = new ContainerBuilder();
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
-            builder.RegisterGeneric(typeof(IUnitOfWork<>)).As(typeof(UnitOfWork<>));
-            builder.RegisterGeneric(typeof(IRepository<object>)).As(typeof(Repository<object>));
-
-            builder.RegisterType<IUserService>().As<UserService>();
-
-
+            builder.RegisterType<AppDbContext>().As<DbContext>();
+            builder.RegisterType<UserService>().As<IUserService>();
+            builder.RegisterGeneric(typeof(UnitOfWork<>)).As(typeof(IUnitOfWork<>));
+            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>));
+            
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }

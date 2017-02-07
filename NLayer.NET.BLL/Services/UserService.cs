@@ -29,8 +29,8 @@ namespace NLayer.NET.BLL.Services
 
         public IList<UserModel> GetUsers()
         {
-            var users = _userRepository.Find();
-            return Mapper.Map<IList<User>, IList<UserModel>>(users);
+            var users = _userRepository.GetAll();
+            return Mapper.Map<IEnumerable<User>, IList<UserModel>>(users);
         }
 
         public bool Exists(Guid idUser)

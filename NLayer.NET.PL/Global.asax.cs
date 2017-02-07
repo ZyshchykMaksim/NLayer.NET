@@ -11,8 +11,8 @@ namespace NLayer.NET.PL
     {
         protected void Application_Start()
         {
-            AutofacConfig.ConfigureContainer();
-            MapConfig.RegisterMappings();
+            AutofacConfig.Configure();
+            MapConfig.Configure();
 
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
