@@ -12,16 +12,16 @@ namespace NLayer.NET.DBL.Infrastructure
     /// The generic repository.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Repository<T> : IRepository<T> where T : class, new()
+    public class GenericRepository<T> : IGenericRepository<T> where T : class, new()
     {
         private readonly DbContext _context;
         private readonly DbSet<T> _dbSet;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Repository{T}"/> class.
+        /// Initializes a new instance of the <see cref="GenericRepository{T}"/> class.
         /// </summary>
         /// <param name="context">The context.</param>
-        public Repository(DbContext context)
+        public GenericRepository(DbContext context)
         {
             this._context = context;
             this._dbSet = this._context.Set<T>();

@@ -57,9 +57,9 @@
     <Compile Include="AppDbContext.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Infrastructure\IRepository.cs" />
+    <Compile Include="Infrastructure\IGenericRepository.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
-    <Compile Include="Infrastructure\Repository.cs" />
+    <Compile Include="Infrastructure\GenericRepository.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="AppDbInitializer.cs" />
   </ItemGroup>

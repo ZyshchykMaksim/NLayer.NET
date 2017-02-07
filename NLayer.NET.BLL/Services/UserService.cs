@@ -20,7 +20,7 @@ namespace NLayer.NET.BLL.Services
 
     public class UserService : IUserService
     {
-        private readonly IRepository<User> _userRepository;
+        private readonly IGenericRepository<User> _userRepository;
 
         public UserService(IUnitOfWork<AppDbContext> unitOfWork)
         {
