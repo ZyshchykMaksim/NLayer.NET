@@ -14,7 +14,7 @@ namespace NLayer.NET.PL
             var builder = new ContainerBuilder();
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
-            builder.RegisterModule(new BLLModule());
+            builder.RegisterModule(new BLLModule() { NameOrConnectionString = "DefaultConnection" });
             builder.RegisterModule(new PLModule());
 
             var container = builder.Build();

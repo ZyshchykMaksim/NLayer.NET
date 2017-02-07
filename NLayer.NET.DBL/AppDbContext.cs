@@ -13,7 +13,7 @@ namespace NLayer.NET.DBL
             Database.SetInitializer<AppDbContext>(new AppDbInitializer());
         }
 
-        public AppDbContext() : base("name=DefaultConnection") { }
+        public AppDbContext() : base("DefaultConnection") { }
 
         //public AppDbContext(string connectionString) : base(connectionString)
         //{
