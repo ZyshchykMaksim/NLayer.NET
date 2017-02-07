@@ -10,6 +10,7 @@ namespace NLayer.NET.BLL.Mappings
 
         public BLLMapping()
         {
+            //TODO Add your new mapping
             CreateMap<User, UserDTO>();
         }
     }
