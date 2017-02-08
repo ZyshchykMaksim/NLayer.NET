@@ -8,7 +8,7 @@ using NLayer.NET.DBL.Infrastructure;
 
 namespace NLayer.NET.DBL.Entities
 {
-    public class User : BaseEntity
+    public class User : EntityBase
     {
         public string Name { get; set; }
         public string Email { get; set; }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NLayer.NET.DBL.Infrastructure
 {
-    public abstract class BaseEntity
+    public abstract class EntityBase
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

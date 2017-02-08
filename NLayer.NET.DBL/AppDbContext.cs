@@ -5,7 +5,7 @@ using NLayer.NET.DBL.Infrastructure;
 
 namespace NLayer.NET.DBL
 {
-    public class AppDbContext : BaseDbContext
+    public class AppDbContext : DbContextBase
     {
         public DbSet<User> Users { get; set; }
 

@@ -9,7 +9,7 @@ namespace NLayer.NET.DBL.Infrastructure
     /// <summary>
     /// Generic storage for persisted domain entities.
     /// </summary>
-    public interface IGenericRepository<T> where T : BaseEntity
+    public interface IGenericRepository<T> where T : EntityBase
     {
 
         /// <summary>

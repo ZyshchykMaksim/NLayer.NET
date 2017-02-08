@@ -10,7 +10,7 @@ namespace NLayer.NET.DBL.Infrastructure
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        IGenericRepository<T> CreateGenericRepository<T>() where T : BaseEntity;
+        IGenericRepository<T> CreateGenericRepository<T>() where T : EntityBase;
 
         /// <summary>
         /// Saves current state.
