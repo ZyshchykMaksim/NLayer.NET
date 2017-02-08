@@ -25,7 +25,7 @@ namespace NLayer.NET.DBL.Infrastructure
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public IGenericRepository<T> CreateGenericRepository<T>() where T : class, new()
+        public IGenericRepository<T> CreateGenericRepository<T>() where T : BaseEntity
         {
             return new GenericRepository<T>(this._dbContext);
         }

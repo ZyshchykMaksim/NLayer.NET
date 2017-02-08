@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NLayer.NET.BLL.Modals;
 using NLayer.NET.DBL.Entities;
 using AutoMapper;

@@ -4,15 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using NLayer.NET.DBL.Infrastructure;
 
 namespace NLayer.NET.DBL.Entities
 {
-    public class User
+    public class User : BaseEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
     }

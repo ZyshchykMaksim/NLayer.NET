@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Data.Entity;
 using NLayer.NET.DBL.Entities;
+using NLayer.NET.DBL.Infrastructure;
 
 namespace NLayer.NET.DBL
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : BaseDbContext
     {
         public DbSet<User> Users { get; set; }
 
@@ -14,13 +15,7 @@ namespace NLayer.NET.DBL
         }
 
         public AppDbContext() : base("DefaultConnection") { }
-
-        //public AppDbContext(string connectionString) : base(connectionString)
-        //{
-        //    if (String.IsNullOrWhiteSpace(connectionString))
-        //        throw new ArgumentException("Invalid connection string");
-        //}
-
+        
         /// <summary>
         /// Save changes
         /// </summary>

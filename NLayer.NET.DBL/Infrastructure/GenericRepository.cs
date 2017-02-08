@@ -12,7 +12,7 @@ namespace NLayer.NET.DBL.Infrastructure
     /// The generic repository.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class GenericRepository<T> : IGenericRepository<T> where T : class, new()
+    public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         private readonly DbContext _context;
         private readonly DbSet<T> _dbSet;

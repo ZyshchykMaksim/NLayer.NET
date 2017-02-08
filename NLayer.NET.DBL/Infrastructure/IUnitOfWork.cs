@@ -3,14 +3,14 @@ using System.Threading.Tasks;
 
 namespace NLayer.NET.DBL.Infrastructure
 {
-    public interface IUnitOfWork<TDbContext>: IDisposable
+    public interface IUnitOfWork<TDbContext> : IDisposable
     {
         /// <summary>
         /// Creates the generic repository.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        IGenericRepository<T> CreateGenericRepository<T>() where T : class, new();
+        IGenericRepository<T> CreateGenericRepository<T>() where T : BaseEntity;
 
         /// <summary>
         /// Saves current state.
