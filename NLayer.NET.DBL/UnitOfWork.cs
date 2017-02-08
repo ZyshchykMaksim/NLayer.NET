@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Threading.Tasks;
+using NLayer.NET.Core.DB;
+using NLayer.NET.Core.Intarfeces;
 
-namespace NLayer.NET.DBL.Infrastructure
+namespace NLayer.NET.DBL
 {
     /// <summary>
     /// The UnitOfWork.
     /// </summary>
-    public class UnitOfWork<TDbContext> : IUnitOfWork<TDbContext> where TDbContext: DbContext, new()
+    public class UnitOfWork<TDbContext> : IUnitOfWork<TDbContext> where TDbContext : DbContext, new()
     {
         private bool _isDisposed = false;
         private readonly DbContext _dbContext;

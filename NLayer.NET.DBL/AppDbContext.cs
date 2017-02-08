@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
+using NLayer.NET.Core.DB;
 using NLayer.NET.DBL.Entities;
-using NLayer.NET.DBL.Infrastructure;
 
 namespace NLayer.NET.DBL
 {

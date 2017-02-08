@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+using NLayer.NET.Core.DB;
 
-namespace NLayer.NET.DBL.Infrastructure
+namespace NLayer.NET.Core.Intarfeces
 {
     public interface IUnitOfWork<TDbContext> : IDisposable
     {

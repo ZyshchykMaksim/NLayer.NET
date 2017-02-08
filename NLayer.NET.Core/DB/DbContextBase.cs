@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NLayer.NET.DBL.Infrastructure
+namespace NLayer.NET.Core.DB
 {
     public abstract class DbContextBase : DbContext
     {

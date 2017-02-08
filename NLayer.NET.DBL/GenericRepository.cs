@@ -5,8 +5,10 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using LinqKit;
+using NLayer.NET.Core.DB;
+using NLayer.NET.Core.Intarfeces;
 
-namespace NLayer.NET.DBL.Infrastructure
+namespace NLayer.NET.DBL
 {
     /// <summary>
     /// The generic repository.

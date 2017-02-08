@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Data.Entity;
 using Autofac;
-using Autofac.Core;
+using NLayer.NET.Core.Intarfeces;
 using NLayer.NET.DBL;
-using NLayer.NET.DBL.Infrastructure;
 
 namespace NLayer.NET.BLL.IoC
 {

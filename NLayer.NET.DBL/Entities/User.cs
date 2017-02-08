@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
-using NLayer.NET.DBL.Infrastructure;
+using NLayer.NET.Core.DB;
 
 namespace NLayer.NET.DBL.Entities
 {

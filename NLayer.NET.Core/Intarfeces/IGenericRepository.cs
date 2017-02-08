@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using NLayer.NET.Core.DB;
 
-namespace NLayer.NET.DBL.Infrastructure
+namespace NLayer.NET.Core.Intarfeces
 {
     /// <summary>
     /// Generic storage for persisted domain entities.

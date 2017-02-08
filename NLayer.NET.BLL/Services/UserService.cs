@@ -4,8 +4,8 @@ using System.Linq;
 using NLayer.NET.BLL.Modals;
 using NLayer.NET.DBL.Entities;
 using AutoMapper;
+using NLayer.NET.Core.Intarfeces;
 using NLayer.NET.DBL;
-using NLayer.NET.DBL.Infrastructure;
 
 namespace NLayer.NET.BLL.Services
 {
