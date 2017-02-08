@@ -12,8 +12,8 @@ namespace NLayer.NET.BLL.Services
     public interface IUserService
     {
         IList<UserDTO> GetUsers();
-        UserDTO GetUser(Guid idUser);
-        bool Exists(Guid idUser);
+        UserDTO GetUser(Guid userId);
+        bool Exists(Guid userId);
     }
 
     public class UserService : IUserService
@@ -31,15 +31,15 @@ namespace NLayer.NET.BLL.Services
             return Mapper.Map<IEnumerable<User>, IList<UserDTO>>(users);
         }
 
-        public bool Exists(Guid idUser)
+        public bool Exists(Guid userId)
         {
-            var user = _userRepository.Find(x => x.Id == idUser).FirstOrDefault();
+            var user = _userRepository.Find(x => x.Id == userId).FirstOrDefault();
             return user != null;
         }
 
-        public UserDTO GetUser(Guid idUser)
+        public UserDTO GetUser(Guid userId)
         {
-            var user = _userRepository.Find(x => x.Id == idUser).FirstOrDefault();
+            var user = _userRepository.Find(x => x.Id == userId).FirstOrDefault();
             return Mapper.Map<User, UserDTO>(user);
         }
     }
