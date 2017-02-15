@@ -2,16 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 using NLayer.NET.Core.DB;
+using NLayer.NET.Common.Pagination;
 
-namespace NLayer.NET.Core.Intarfeces
+namespace NLayer.NET.DBL.Repositories
 {
     /// <summary>
     /// Generic storage for persisted domain entities.
     /// </summary>
     public interface IGenericRepository<T> where T : EntityBase
     {
+        /// <summary>
+        /// Applies search with specified criteria.
+        /// </summary>
+        /// <param name="searchQuery"></param>
+        /// <returns></returns>
+        IEnumerable<T> Search(SearchQuery<T> searchQuery);
+
+        /// <summary>
+        /// Applies queryable search with specified criteria.
+        /// </summary>
+        /// <param name="searchQuery"></param>
+        /// <returns></returns>
+        IQueryable<T> QueryableSearch(SearchQuery<T> searchQuery);
+
+        /// <summary>
+        /// Applies search with specified criteria and paging.
+        /// </summary>
+        /// <param name="searchQuery"></param>
+        /// <param name="paging"></param>
+        /// <returns></returns>
+        IPaginatedList<T> Search(SearchQuery<T> searchQuery, IPaging paging);
 
         /// <summary>
         /// Gets all entities of type T
@@ -60,28 +81,6 @@ namespace NLayer.NET.Core.Intarfeces
         /// Deletes the specified range of entities.
         /// </summary>
         /// <param name="entities">The entities.</param>
-        void DeleteRange(ICollection<T> entities);
-
-        /// <summary>
-        /// Provides a point to query entities.
-        /// </summary>
-        /// <param name="filter">The filter.</param>
-        /// <param name="orderBy">The order by.</param>
-        /// <param name="includeProperties">The include properties.</param>
-        /// <param name="startIndex">The start index.</param>
-        /// <param name="limit">The limit.</param>
-        /// <returns></returns>
-        List<T> Find(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, List<Expression<Func<T, object>>> includeProperties = null, int? startIndex = null, int? limit = null);
-
-        /// <summary>
-        /// Provides a point to query entities (async).
-        /// </summary>
-        /// <param name="filter">The filter.</param>
-        /// <param name="orderBy">The order by.</param>
-        /// <param name="includeProperties">The include properties.</param>
-        /// <param name="startIndex">The start index.</param>
-        /// <param name="limit">The limit.</param>
-        /// <returns></returns>
-        Task<List<T>> FindAsync(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, List<Expression<Func<T, object>>> includeProperties = null, int? startIndex = null, int? limit = null);
+        void DeleteRange(ICollection<T> entities);        
     }
 }

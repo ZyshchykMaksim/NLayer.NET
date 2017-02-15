@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
-using LinqKit;
 using NLayer.NET.Core.DB;
-using NLayer.NET.Core.Intarfeces;
+using NLayer.NET.Common.Pagination;
 
-namespace NLayer.NET.DBL
+namespace NLayer.NET.DBL.Repositories.Implementation
 {
     /// <summary>
     /// The generic repository.
@@ -16,8 +14,8 @@ namespace NLayer.NET.DBL
     /// <typeparam name="T"></typeparam>
     public class GenericRepository<T> : IGenericRepository<T> where T : EntityBase
     {
-        private readonly DbContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected readonly DbContext _context;
+        protected readonly DbSet<T> _dbSet;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GenericRepository{T}"/> class.
@@ -30,7 +28,58 @@ namespace NLayer.NET.DBL
         }
 
         #region IRepository<T> Members
-        
+
+
+        /// <summary>
+        /// Applies search with specified criteria and paging.
+        /// </summary>
+        /// <param name="searchQuery"></param>
+        /// <param name="paging"></param>
+        /// <returns></returns>
+        public virtual IPaginatedList<T> Search(SearchQuery<T> searchQuery, IPaging paging)
+        {
+            var result = this.BuildQuery(searchQuery);
+
+            return paging.Apply(result);
+        }
+
+        /// <summary>
+        /// Applies search with specified criteria.
+        /// </summary>
+        /// <param name="searchQuery"></param>
+        /// <returns></returns>
+        public virtual IEnumerable<T> Search(SearchQuery<T> searchQuery)
+        {
+            return this.BuildQuery(searchQuery).ToList();
+        }
+
+        /// <summary>
+        /// Applies search with specified criteria.
+        /// </summary>
+        /// <param name="searchQuery"></param>
+        /// <returns></returns>
+        public IQueryable<T> QueryableSearch(SearchQuery<T> searchQuery)
+        {
+            return this.BuildQuery(searchQuery);
+        }
+
+        /// <summary>
+        /// Applies search with specified criteria.
+        /// </summary>
+        /// <param name="searchQuery"></param>
+        /// <returns></returns>
+        protected virtual IQueryable<T> BuildQuery(SearchQuery<T> searchQuery)
+        {
+            IQueryable<T> collection = _dbSet;
+
+            if (searchQuery == null)
+            {
+                return collection;
+            }
+
+            return searchQuery.Apply(collection);
+        }
+
         /// <summary>
         /// Get all entities.
         /// </summary>
@@ -101,70 +150,7 @@ namespace NLayer.NET.DBL
         {
             _dbSet.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
-        }
-
-        /// <summary>
-        /// Provides a point to query entities.
-        /// </summary>
-        /// <param name="filter">The filter.</param>
-        /// <param name="orderBy">The order by.</param>
-        /// <param name="includeProperties">The include properties.</param>
-        /// <param name="startIndex">The start index.</param>
-        /// <param name="limit">The limit.</param>
-        /// <returns></returns>
-        public virtual List<T> Find(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, List<Expression<Func<T, object>>> includeProperties = null, int? startIndex = null, int? limit = null)
-        {
-            var query = Query(filter, orderBy, includeProperties, startIndex, limit);
-
-            return query.ToList();
-        }
-
-        /// <summary>
-        /// Provides a point to query entities (async).
-        /// </summary>
-        /// <param name="filter">The filter.</param>
-        /// <param name="orderBy">The order by.</param>
-        /// <param name="includeProperties">The include properties.</param>
-        /// <param name="startIndex">The start index.</param>
-        /// <param name="limit">The limit.</param>
-        /// <returns></returns>
-        public virtual Task<List<T>> FindAsync(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, List<Expression<Func<T, object>>> includeProperties = null, int? startIndex = null, int? limit = null)
-        {
-            var query = Query(filter, orderBy, includeProperties, startIndex, limit);
-            return query.ToListAsync();
-        }
-
-        protected virtual IQueryable<T> Query(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, List<Expression<Func<T, object>>> includeProperties = null, int? startIndex = null, int? limit = null)
-        {
-            IQueryable<T> query = _dbSet.AsExpandable();
-
-            if (includeProperties != null)
-            {
-                includeProperties.ForEach(i => { query = query.Include(i); });
-            }
-
-            if (filter != null)
-            {
-                query = query.Where(filter);
-            }
-
-            if (orderBy != null)
-            {
-                query = orderBy(query);
-            }
-
-            if (startIndex != null)
-            {
-                query = query.Skip(startIndex.Value);
-            }
-
-            if (limit != null)
-            {
-                query = query.Take(limit.Value);
-            }
-
-            return query;
-        }
+        }        
 
         #endregion
     }
