@@ -5,6 +5,7 @@ using NLayer.NET.BLL.Modals;
 using NLayer.NET.DBL.Entities;
 using AutoMapper;
 using NLayer.NET.DBL;
+using NLayer.NET.DBL.Repositories;
 
 namespace NLayer.NET.BLL.Services
 {
@@ -21,7 +22,7 @@ namespace NLayer.NET.BLL.Services
 
         public UserService(IUnitOfWork<AppDbContext> unitOfWork)
         {
-            _userRepository = unitOfWork.CreateGenericRepository<User>();            
+            _userRepository = unitOfWork.CreateGenericRepository<User>();                        
         }
 
         public IList<UserDTO> GetUsers()
