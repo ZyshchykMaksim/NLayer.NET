@@ -7,7 +7,7 @@ namespace NLayer.NET.PL.Controllers
 {
     public class HomeController : Controller
     {
-        private IUserService _userService;
+        private readonly IUserService _userService;
 
         public HomeController(IUserService userService)
         {
