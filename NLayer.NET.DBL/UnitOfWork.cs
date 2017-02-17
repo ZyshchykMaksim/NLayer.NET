@@ -28,9 +28,19 @@ namespace NLayer.NET.DBL
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public IGenericRepository<T> CreateGenericRepository<T>() where T : EntityBase
+        public IRepository<T> CreateRepository<T>() where T : EntityBase
         {
-            return new GenericRepository<T>(this._dbContext);            
+            return new Repository<T>(this._dbContext);            
+        }
+
+        /// <summary>
+        /// Creates the generic repository.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public IRepository<T> CreateCachedRepository<T>() where T : EntityBase
+        {
+            return new CachedRepository<T>(this._dbContext);
         }
 
         /// <summary>

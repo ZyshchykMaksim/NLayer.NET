@@ -21,7 +21,7 @@ namespace NLayer.NET.BLL.IoC
 
             builder.RegisterType<AppDbContext>().As<DbContext>();
             builder.RegisterGeneric(typeof(UnitOfWork<>)).As(typeof(IUnitOfWork<>));
-            builder.RegisterGeneric(typeof(GenericRepository<>)).As(typeof(IGenericRepository<>));
+            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>));
         }
     }
 }

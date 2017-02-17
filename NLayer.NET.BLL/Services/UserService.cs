@@ -18,17 +18,17 @@ namespace NLayer.NET.BLL.Services
 
     public class UserService : IUserService
     {
-        private readonly IGenericRepository<User> _userRepository;
+        private readonly IRepository<User> _userRepository;
 
         public UserService(IUnitOfWork<AppDbContext> unitOfWork)
         {
-            _userRepository = unitOfWork.CreateGenericRepository<User>();                        
+            _userRepository = unitOfWork.CreateRepository<User>();
         }
 
         public IList<UserDTO> GetUsers()
         {
-            var users = _userRepository.GetAll();
-            return Mapper.Map<IEnumerable<User>, IList<UserDTO>>(users);
+            IEnumerable<User> users = _userRepository.GetAll();
+            return Mapper.Map<IEnumerable<User>, IList<UserDTO>>(users.ToList());
         }
 
         public bool Exists(Guid userId)

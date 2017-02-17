@@ -14,7 +14,7 @@ namespace NLayer.NET.DBL.Repositories.Implementation
     /// The cached repository.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class CachedRepository<T> : GenericRepository<T> where T : EntityBase
+    public class CachedRepository<T> : Repository<T> where T : EntityBase
     {
         private const int DefaultCacheIntervalInMinutes = 10;
         private const string CacheKeyTemplate = "{0}CollectionCache";
@@ -27,6 +27,7 @@ namespace NLayer.NET.DBL.Repositories.Implementation
         /// Initializes a new instance of the <see cref="CachedRepository{T}"/> class.
         /// </summary>
         /// <param name="context">The context.</param>
+        /// <param name="cacheInterval">The cache interval</param>
         public CachedRepository(DbContext context, int cacheInterval = DefaultCacheIntervalInMinutes) :
             base(context)
         {

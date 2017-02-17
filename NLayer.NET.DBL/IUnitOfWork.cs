@@ -8,11 +8,18 @@ namespace NLayer.NET.DBL
     public interface IUnitOfWork<TDbContext> : IDisposable
     {
         /// <summary>
-        /// Creates the generic repository.
+        /// Creates the repository.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        IGenericRepository<T> CreateGenericRepository<T>() where T : EntityBase;
+        IRepository<T> CreateRepository<T>() where T : EntityBase;
+
+        /// <summary>
+        /// Creates the cached repository.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        IRepository<T> CreateCachedRepository<T>() where T : EntityBase;
 
         /// <summary>
         /// Saves current state.

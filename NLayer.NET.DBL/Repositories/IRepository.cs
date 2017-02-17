@@ -10,7 +10,7 @@ namespace NLayer.NET.DBL.Repositories
     /// <summary>
     /// Generic storage for persisted domain entities.
     /// </summary>
-    public interface IGenericRepository<T> where T : EntityBase
+    public interface IRepository<T> where T : EntityBase
     {
         /// <summary>
         /// Applies search with specified criteria.

@@ -12,16 +12,16 @@ namespace NLayer.NET.DBL.Repositories.Implementation
     /// The generic repository.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class GenericRepository<T> : IGenericRepository<T> where T : EntityBase
+    public class Repository<T> : IRepository<T> where T : EntityBase
     {
         protected readonly DbContext _context;
         protected readonly DbSet<T> _dbSet;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GenericRepository{T}"/> class.
+        /// Initializes a new instance of the <see cref="Repository{T}"/> class.
         /// </summary>
         /// <param name="context">The context.</param>
-        public GenericRepository(DbContext context)
+        public Repository(DbContext context)
         {
             this._context = context;
             this._dbSet = this._context.Set<T>();
