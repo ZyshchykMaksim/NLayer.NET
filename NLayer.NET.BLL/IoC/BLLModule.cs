@@ -1,8 +1,8 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using Autofac;
-using NLayer.NET.Core.Intarfeces;
 using NLayer.NET.DBL;
+using NLayer.NET.DBL.Repositories.Implementation;
+using NLayer.NET.DBL.Repositories;
 
 namespace NLayer.NET.BLL.IoC
 {

@@ -4,8 +4,8 @@ using System.Linq;
 using NLayer.NET.BLL.Modals;
 using NLayer.NET.DBL.Entities;
 using AutoMapper;
-using NLayer.NET.Core.Intarfeces;
 using NLayer.NET.DBL;
+using NLayer.NET.DBL.Repositories;
 
 namespace NLayer.NET.BLL.Services
 {
@@ -22,7 +22,7 @@ namespace NLayer.NET.BLL.Services
 
         public UserService(IUnitOfWork<AppDbContext> unitOfWork)
         {
-            _userRepository = unitOfWork.CreateGenericRepository<User>();
+            _userRepository = unitOfWork.CreateGenericRepository<User>();                        
         }
 
         public IList<UserDTO> GetUsers()
@@ -33,13 +33,21 @@ namespace NLayer.NET.BLL.Services
 
         public bool Exists(Guid userId)
         {
-            var user = _userRepository.Find(x => x.Id == userId).FirstOrDefault();
+            var querySearch = new SearchQuery<User>();
+            querySearch.AddFilter(x => x.Id == userId);
+
+            var user = _userRepository.Search(querySearch).FirstOrDefault();
+
             return user != null;
         }
 
         public UserDTO GetUser(Guid userId)
         {
-            var user = _userRepository.Find(x => x.Id == userId).FirstOrDefault();
+            var querySearch = new SearchQuery<User>();
+            querySearch.AddFilter(x => x.Id == userId);
+
+            var user = _userRepository.Search(querySearch).FirstOrDefault();
+
             return Mapper.Map<User, UserDTO>(user);
         }
     }

@@ -2,7 +2,8 @@
 using System.Data.Entity;
 using System.Threading.Tasks;
 using NLayer.NET.Core.DB;
-using NLayer.NET.Core.Intarfeces;
+using NLayer.NET.DBL.Repositories.Implementation;
+using NLayer.NET.DBL.Repositories;
 
 namespace NLayer.NET.DBL
 {
@@ -29,7 +30,7 @@ namespace NLayer.NET.DBL
         /// <returns></returns>
         public IGenericRepository<T> CreateGenericRepository<T>() where T : EntityBase
         {
-            return new GenericRepository<T>(this._dbContext);
+            return new GenericRepository<T>(this._dbContext);            
         }
 
         /// <summary>
