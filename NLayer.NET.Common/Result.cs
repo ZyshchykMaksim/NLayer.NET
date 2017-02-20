@@ -11,6 +11,7 @@ namespace NLayer.NET.Common
         public Result()
         {
             Errors = new List<Error>();
+            InfoMessages = new List<string>();
         }
 
         /// <summary>
