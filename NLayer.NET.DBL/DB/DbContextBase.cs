@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 
-namespace NLayer.NET.Core.DB
+namespace NLayer.NET.DBL.DB
 {
     public abstract class DbContextBase : DbContext
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using NLayer.NET.Core.DB;
+using NLayer.NET.DBL.DB;
 using NLayer.NET.DBL.Repositories;
 
 namespace NLayer.NET.DBL

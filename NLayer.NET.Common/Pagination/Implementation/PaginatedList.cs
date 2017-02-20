@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using NLayer.NET.Common.Intarfeces;
 
 namespace NLayer.NET.Common.Pagination.Implementation
 {

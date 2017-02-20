@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace NLayer.NET.Common.Pagination
+namespace NLayer.NET.Common.Intarfeces
 {
     public interface IPaginatedList<out T> : IEnumerable<T>
     {

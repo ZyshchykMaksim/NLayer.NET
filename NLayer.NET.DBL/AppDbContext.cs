@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
-using NLayer.NET.Core.DB;
+using NLayer.NET.DBL.DB;
 using NLayer.NET.DBL.Entities;
 
 namespace NLayer.NET.DBL

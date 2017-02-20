@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NLayer.NET.Core.Exceptions
+namespace NLayer.NET.Common.Exceptions
 {
     public class ValidationException : Exception
     {

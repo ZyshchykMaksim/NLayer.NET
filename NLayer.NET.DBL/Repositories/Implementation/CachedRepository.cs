@@ -4,9 +4,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using LinqKit;
-using NLayer.NET.Core.DB;
 using NLayer.NET.DBL.Cache;
 using System.Runtime.Caching;
+using NLayer.NET.DBL.DB;
 
 namespace NLayer.NET.DBL.Repositories.Implementation
 {

@@ -156,6 +156,10 @@
       <Project>{6cfdeb6d-dd02-42e3-a44a-82c35e248c1d}</Project>
       <Name>NLayer.NET.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NLayer.NET.Common\NLayer.NET.Common.csproj">
+      <Project>{7b311616-843d-42c6-83c0-25243fe70ca1}</Project>
+      <Name>NLayer.NET.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

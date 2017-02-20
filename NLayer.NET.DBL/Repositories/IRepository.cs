@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using NLayer.NET.Core.DB;
+using NLayer.NET.Common.Intarfeces;
 using NLayer.NET.Common.Pagination;
+using NLayer.NET.DBL.DB;
 
 namespace NLayer.NET.DBL.Repositories
 {

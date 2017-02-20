@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace NLayer.NET.Common.Pagination
+namespace NLayer.NET.Common.Intarfeces
 {
     /// <summary>
     /// Declares methods to appy pagination to query.

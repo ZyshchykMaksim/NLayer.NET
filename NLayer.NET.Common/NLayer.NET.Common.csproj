@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,12 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Pagination\Implementation\PaginatedList.cs" />
     <Compile Include="Pagination\Implementation\Paging.cs" />
-    <Compile Include="Pagination\IPaginatedList.cs" />
-    <Compile Include="Pagination\IPaging.cs" />
+    <Compile Include="Intarfeces\IPaginatedList.cs" />
+    <Compile Include="Intarfeces\IPaging.cs" />
     <Compile Include="Pagination\PagingDefaults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Intarfeces\IResult.cs" />
+    <Compile Include="Result.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sorting\" />

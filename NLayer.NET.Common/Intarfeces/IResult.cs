@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace NLayer.NET.Core.Intarfeces
+namespace NLayer.NET.Common.Intarfeces
 {
     public interface IResult<T>
     {
@@ -17,11 +13,6 @@ namespace NLayer.NET.Core.Intarfeces
         /// Return true if the operation was successful
         /// </summary>
         bool IsSuccess { get; }
-
-        /// <summary>
-        /// Return true if the operation has failed
-        /// </summary>
-        bool IsFailure { get; }
 
         /// <summary>
         /// The list errors

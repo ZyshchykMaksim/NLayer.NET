@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using NLayer.NET.Core.Intarfeces;
+using NLayer.NET.Common.Intarfeces;
 
-namespace NLayer.NET.Core
+namespace NLayer.NET.Common
 {
     [DataContract]
     public class Result<T> : IResult<T>
@@ -27,12 +24,6 @@ namespace NLayer.NET.Core
         /// </summary>
         [DataMember]
         public bool IsSuccess => !Errors.Any();
-
-        /// <summary>
-        /// Return true if the operation has failed
-        /// </summary>
-        [DataMember]
-        public bool IsFailure => Errors.Any();
 
         /// <summary>
         /// The list errors
