@@ -4,6 +4,7 @@
 *.user
 #NuGet
 packages
+Logs
 _ReSharper.*
 bin
 obj
