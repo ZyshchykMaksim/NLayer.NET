@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using Autofac;
+using NLayer.NET.BLL.Logger;
 using NLayer.NET.DBL;
 using NLayer.NET.DBL.Repositories.Implementation;
 using NLayer.NET.DBL.Repositories;
@@ -20,6 +21,7 @@ namespace NLayer.NET.BLL.IoC
 
 
             builder.RegisterType<AppDbContext>().As<DbContext>();
+            builder.RegisterType<LogFactory>().As<ILogFactory>();
             builder.RegisterGeneric(typeof(UnitOfWork<>)).As(typeof(IUnitOfWork<>));
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>));
         }
