@@ -7,7 +7,7 @@ namespace NLayer.NET.PL.App_Start
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new InternalErrorFilterAttribute());
+            //filters.Add(new InternalErrorFilterAttribute());
         }
     }
 }
