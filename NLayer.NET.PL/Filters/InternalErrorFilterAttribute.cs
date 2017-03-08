@@ -1,21 +1,27 @@
-﻿using System.Net;
-using System.Net.Http;
-using System.Web.Http.Filters;
+﻿using NLayer.NET.BLL.Logger;
+using System.Web.Mvc;
 
 namespace NLayer.NET.PL.Filters
 {
-
-    public class InternalErrorFilterAttribute : ExceptionFilterAttribute
+    /// <summary>
+    /// Internal filter attribute
+    /// </summary>
+    public class InternalErrorFilterAttribute : ActionFilterAttribute, IExceptionFilter
     {
-        
-        //private readonly Logger _logger = LogManager.GetCurrentClassLogger();
-        // TODO add logger to store trace log of error
+        /// <summary>
+        /// Log service
+        /// </summary>
+        private readonly ILog<InternalErrorFilterAttribute> _logService = (new LogFactory()).CreateLogger<InternalErrorFilterAttribute>();
 
-        public override void OnException(HttpActionExecutedContext context)
+        /// <summary>
+        /// Handle exception
+        /// </summary>
+        /// <param name="context"></param>
+        public void OnException(ExceptionContext context)
         {
-            //_logger.FatalException(context.Exception.Message, context.Exception);
+            _logService.Error(context.Exception.Message, context.Exception);
 
-            context.Response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
+            context.ExceptionHandled = true;
         }
     }
 }

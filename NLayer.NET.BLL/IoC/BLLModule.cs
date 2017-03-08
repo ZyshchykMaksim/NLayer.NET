@@ -20,7 +20,7 @@ namespace NLayer.NET.BLL.IoC
             //        (pi, ctx) => NameOrConnectionString));
 
 
-            builder.RegisterType<AppDbContext>().As<DbContext>();
+            builder.RegisterType<AppDbContext>().As<DbContext>().InstancePerRequest();
             builder.RegisterType<LogFactory>().As<ILogFactory>();
             builder.RegisterGeneric(typeof(UnitOfWork<>)).As(typeof(IUnitOfWork<>));
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>));

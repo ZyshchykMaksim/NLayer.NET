@@ -3,11 +3,11 @@ using System.Web.Mvc;
 
 namespace NLayer.NET.PL.App_Start
 {
-    public class FilterConfig
+    public static class FilterConfig
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            //filters.Add(new InternalErrorFilterAttribute());
-        }
-    }
+            filters.Add(new InternalErrorFilterAttribute());
+        }       
+    }   
 }

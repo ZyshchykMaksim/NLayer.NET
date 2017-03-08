@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NLayer.NET.DBL.Entities;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NLayer.NET.DBL.Entities;
 
 namespace NLayer.NET.DBL
 {

@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using NLayer.NET.BLL.Logger;
 using NLayer.NET.BLL.Modals;
 using NLayer.NET.BLL.Services;
-using NLayer.NET.BLL.Services.Implementation;
 using NLayer.NET.Common.Intarfeces;
 
 namespace NLayer.NET.PL.Controllers
@@ -18,7 +17,9 @@ namespace NLayer.NET.PL.Controllers
         {
             _userService = userService;
             _logService = logFactory.CreateLogger<HomeController>();
-        }
+        }                
+        
+        
         // GET: Home
         public ActionResult Index()
         {
@@ -28,7 +29,7 @@ namespace NLayer.NET.PL.Controllers
             IResult<UserDTO> user = _userService.GetUser(Guid.NewGuid());
             IResult<bool> isUser = _userService.Exists(Guid.NewGuid());
 
-            return View();
+            return View();           
         }
     }
 }
