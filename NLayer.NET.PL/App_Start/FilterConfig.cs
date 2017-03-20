@@ -1,13 +1,13 @@
-﻿using NLayer.NET.PL.Filters;
+﻿using System.Web;
 using System.Web.Mvc;
 
-namespace NLayer.NET.PL.App_Start
+namespace NLayer.NET.PL
 {
-    public static class FilterConfig
+    public class FilterConfig
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new InternalErrorFilterAttribute());
-        }       
-    }   
+            filters.Add(new HandleErrorAttribute());
+        }
+    }
 }

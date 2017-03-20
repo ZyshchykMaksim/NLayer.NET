@@ -1,6 +1,10 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Optimization;
 using System.Web.Routing;
-using NLayer.NET.PL.App_Start;
 
 namespace NLayer.NET.PL
 {
@@ -8,12 +12,10 @@ namespace NLayer.NET.PL
     {
         protected void Application_Start()
         {
-            AutofacConfig.Configure();
-            MapConfig.Configure();
-            
             AreaRegistration.RegisterAllAreas();
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }

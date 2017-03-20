@@ -1,35 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
-using NLayer.NET.BLL.Logger;
-using NLayer.NET.BLL.Modals;
-using NLayer.NET.BLL.Services;
-using NLayer.NET.Common.Intarfeces;
 
 namespace NLayer.NET.PL.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IUserService _userService;
-        private readonly ILog<HomeController> _logService;
-
-        public HomeController(IUserService userService, ILogFactory logFactory)
-        {
-            _userService = userService;
-            _logService = logFactory.CreateLogger<HomeController>();
-        }                
-        
-        
-        // GET: Home
         public ActionResult Index()
         {
-            _logService.Info("GET HomeController.Index");
+            return View();
+        }
 
-            IResult<IList<UserDTO>> users = _userService.GetUsers();
-            IResult<UserDTO> user = _userService.GetUser(Guid.NewGuid());
-            IResult<bool> isUser = _userService.Exists(Guid.NewGuid());
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your application description page.";
 
-            return View();           
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
         }
     }
 }
