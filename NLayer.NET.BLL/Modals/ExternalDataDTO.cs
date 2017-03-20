@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace NLayer.NET.BLL.Modals
 {
-    public class UserDTO
+    public class ExternalDataDTO
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
+        public string Ditails { get; set; }
     }
 }

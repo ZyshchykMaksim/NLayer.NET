@@ -7,7 +7,7 @@ namespace NLayer.NET.DBL
 {
     public class AppDbContext : DbContextBase
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<ExternalData> ExternalDatas { get; set; }
 
         static AppDbContext()
         {

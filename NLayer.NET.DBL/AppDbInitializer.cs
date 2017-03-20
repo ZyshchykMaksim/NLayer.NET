@@ -1,5 +1,7 @@
 ﻿using NLayer.NET.DBL.Entities;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace NLayer.NET.DBL
 {
@@ -10,9 +12,27 @@ namespace NLayer.NET.DBL
     /// </summary>
     public class AppDbInitializer : CreateDatabaseIfNotExists<AppDbContext>
     {
-        protected override void Seed(AppDbContext db)
+        protected override void Seed(AppDbContext context)
         {
-            db.Users.Add(new User { Name = "Nick", Email = "nick@gmail.com" });
+            var manager = new UserManager<User>(new UserStore<User>(context));
+            manager.PasswordValidator = new MinimumLengthValidator(4);
+            User admin = new User()
+            {
+                UserName = "admin@gmail.com",
+                Email = "admin@gmail.com"
+            };
+
+            IdentityResult result = manager.Create(admin, "localhost");
+            if (result.Succeeded)
+            {
+                IdentityRole admins = new IdentityRole("Admins");
+                context.Roles.Add(admins);
+                context.SaveChanges();
+
+                manager.AddToRole(admin.Id, admins.Name);
+            }
+            context.ExternalDatas.Add(new ExternalData() { Ditails = "TODO" });
+            base.Seed(context);
         }
     }
 }

@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using Microsoft.AspNet.Identity.EntityFramework;
 using NLayer.NET.DBL.DB;
 
 namespace NLayer.NET.DBL.Entities
 {
-    public class User : EntityBase
+    public class User :  IdentityUser
     {
-        public string Name { get; set; }
-        public string Email { get; set; }
+
     }
 }

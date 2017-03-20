@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using NLayer.NET.DBL.Entities;
 
 namespace NLayer.NET.DBL.DB
 {
-    public abstract class DbContextBase : DbContext
+    public abstract class DbContextBase : IdentityDbContext<User>
     {
         protected DbContextBase(string connectionString) : base(connectionString)
         {

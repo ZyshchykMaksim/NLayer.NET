@@ -8,10 +8,9 @@ using NLayer.NET.Common.Intarfeces;
 
 namespace NLayer.NET.BLL.Services
 {
-    public interface IUserService
+    public interface IExternalDataService
     {
-        IResult<IList<UserDTO>> GetUsers();
-        IResult<UserDTO> GetUser(Guid userId);
-        IResult<bool> Exists(Guid userId);
+        IResult<IList<ExternalDataDTO>> GetUsers();
+        IResult<ExternalDataDTO> GetUser(Guid userId);
     }
 }
