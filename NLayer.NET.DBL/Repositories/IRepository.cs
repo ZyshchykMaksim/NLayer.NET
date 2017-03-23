@@ -71,7 +71,7 @@ namespace NLayer.NET.DBL.Repositories
         /// </summary>
         /// <param name="entity">The entity.</param>
         void Delete(T entity);
-        
+
         /// <summary>
         /// Deletes the specified of entities.
         /// </summary>
@@ -82,6 +82,6 @@ namespace NLayer.NET.DBL.Repositories
         /// Deletes the specified range of entities.
         /// </summary>
         /// <param name="entities">The entities.</param>
-        void DeleteRange(ICollection<T> entities);        
+        void DeleteRange(ICollection<T> entities);
     }
 }

@@ -151,8 +151,7 @@ namespace NLayer.NET.DBL.Repositories.Implementation
         {
             _dbSet.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
-        }        
-
+        }
         #endregion
     }
 }
