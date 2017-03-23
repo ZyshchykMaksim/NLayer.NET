@@ -89,6 +89,8 @@ namespace NLayer.NET.PL
         {
         }
 
+        //TODO GenerateUserIdentityAsync?
+        #region TODO 
         public override Task<ClaimsIdentity> CreateUserIdentityAsync(User user)
         {
             return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
@@ -98,6 +100,7 @@ namespace NLayer.NET.PL
         {
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
+        #endregion
     }
 
 

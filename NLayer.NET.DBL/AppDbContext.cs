@@ -15,12 +15,7 @@ namespace NLayer.NET.DBL
         }
 
         public AppDbContext() : base("DefaultConnection") { }
-
-        public static AppDbContext Create()
-        {
-            return new AppDbContext();
-        }
-
+        
         /// <summary>
         /// Save changes
         /// </summary>
