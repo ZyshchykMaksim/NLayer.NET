@@ -29,9 +29,9 @@ namespace NLayer.NET.PL.Controllers
             _authManager = authManager;
         }
 
-        public ApplicationSignInManager SignInManager => _signInManager;
+        private ApplicationSignInManager SignInManager => _signInManager;
 
-        public ApplicationUserManager UserManager => _userManager;
+        private ApplicationUserManager UserManager => _userManager;
 
         private IAuthenticationManager AuthenticationManager => _authManager;
 
