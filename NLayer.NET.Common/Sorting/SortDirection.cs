@@ -1,4 +1,4 @@
-﻿namespace NLayer.NET.DBL
+﻿namespace NLayer.NET.Common.Sorting
 {
     public enum SortDirection
     {

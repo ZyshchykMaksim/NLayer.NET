@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace NLayer.NET.DBL
+namespace NLayer.NET.Common.Sorting
 {
     /// <summary>
     /// Provides ability to specify ordering.

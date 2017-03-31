@@ -51,10 +51,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Intarfeces\IResult.cs" />
     <Compile Include="Result.cs" />
+    <Compile Include="Sorting\ISortCriteria.cs" />
+    <Compile Include="Sorting\SortCriteria.cs" />
+    <Compile Include="Sorting\SortDirection.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Sorting\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
