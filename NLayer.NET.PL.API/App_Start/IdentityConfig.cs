@@ -14,7 +14,7 @@ namespace NLayer.NET.PL.API
 
     public sealed class ApplicationUserManager : UserManager<User>
     {
-        public ApplicationUserManager(IUserStore<User> store, IDataProtectionProvider dataProtectionProvider) : base(store)
+        public ApplicationUserManager(IUserStore<User> store) : base(store)
         {
             // Configure validation logic for usernames
             UserValidator = new UserValidator<User>(this)
@@ -31,7 +31,6 @@ namespace NLayer.NET.PL.API
                 RequireLowercase = true,
                 RequireUppercase = true,
             };
-            UserTokenProvider = new DataProtectorTokenProvider<User>(dataProtectionProvider.Create("ASP.NET Identity"));
         }
     }
 }

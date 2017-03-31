@@ -22,6 +22,7 @@ using NLayer.NET.DBL;
 using NLayer.NET.DBL.Entities;
 using NLayer.NET.DBL.Repositories;
 using NLayer.NET.DBL.Repositories.Implementation;
+using NLayer.NET.PL.API.Providers;
 using Owin;
 
 [assembly: OwinStartup(typeof(NLayer.NET.PL.API.Startup))]
@@ -52,10 +53,13 @@ namespace NLayer.NET.PL.API
 
             builder.Register<IAuthenticationManager>(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
             builder.Register<IDataProtectionProvider>(c => app.GetDataProtectionProvider()).InstancePerRequest();
-            
+            builder.Register(c => new ApplicationOAuthProvider(AuthSettings.PublicClientId,c.Resolve<ApplicationUserManager>())).AsImplementedInterfaces().InstancePerRequest();
+
             builder.RegisterType<TicketDataFormat>().As<ISecureDataFormat<AuthenticationTicket>>();
             builder.RegisterType<TicketSerializer>().As<IDataSerializer<AuthenticationTicket>>();
+
             builder.Register(c => new DpapiDataProtectionProvider().Create("ASP.NET Identity")).As<IDataProtector>();
+            builder.Register<IdentityFactoryOptions<ApplicationUserManager>>(c => new IdentityFactoryOptions<ApplicationUserManager>() { DataProtectionProvider = new DpapiDataProtectionProvider("ASP.NET Identity") });
 
             builder.RegisterAssemblyTypes(typeof(ExternalDataService).Assembly).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerRequest();
 

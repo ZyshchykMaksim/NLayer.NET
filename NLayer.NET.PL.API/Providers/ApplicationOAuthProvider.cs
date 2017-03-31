@@ -17,8 +17,9 @@ namespace NLayer.NET.PL.API.Providers
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
         private readonly string _publicClientId;
+        private readonly ApplicationUserManager _applicationUserManager;
 
-        public ApplicationOAuthProvider(string publicClientId)
+        public ApplicationOAuthProvider(string publicClientId, ApplicationUserManager applicationUserManager)
         {
             if (publicClientId == null)
             {
@@ -26,13 +27,12 @@ namespace NLayer.NET.PL.API.Providers
             }
 
             _publicClientId = publicClientId;
+            _applicationUserManager = applicationUserManager;
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
-
-            User user = await userManager.FindAsync(context.UserName, context.Password);
+            User user = await _applicationUserManager.FindAsync(context.UserName.Replace(Environment.NewLine,""), context.Password);
 
             if (user == null)
             {
@@ -40,9 +40,9 @@ namespace NLayer.NET.PL.API.Providers
                 return;
             }
 
-            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
+            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(_applicationUserManager,
                OAuthDefaults.AuthenticationType);
-            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
+            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(_applicationUserManager,
                 CookieAuthenticationDefaults.AuthenticationType);
 
             AuthenticationProperties properties = CreateProperties(user.UserName);

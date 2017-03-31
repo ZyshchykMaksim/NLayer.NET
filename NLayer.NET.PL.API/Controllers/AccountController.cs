@@ -17,7 +17,7 @@ using NLayer.NET.PL.API.Results;
 
 namespace NLayer.NET.PL.API.Controllers
 {
-   
+    /*See https://metanit.com/sharp/aspnet_webapi/5.1.php */
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
@@ -298,7 +298,7 @@ namespace NLayer.NET.PL.API.Controllers
                     {
                         provider = description.AuthenticationType,
                         response_type = "token",
-                        client_id = Startup.PublicClientId,
+                        client_id = AuthSettings.PublicClientId,
                         redirect_uri = new Uri(Request.RequestUri, returnUrl).AbsoluteUri,
                         state = state
                     }),
