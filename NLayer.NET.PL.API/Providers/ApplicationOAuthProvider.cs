@@ -17,9 +17,8 @@ namespace NLayer.NET.PL.API.Providers
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
         private readonly string _publicClientId;
-        private readonly ApplicationUserManager _applicationUserManager;
 
-        public ApplicationOAuthProvider(string publicClientId, ApplicationUserManager applicationUserManager)
+        public ApplicationOAuthProvider(string publicClientId)
         {
             if (publicClientId == null)
             {
@@ -27,12 +26,13 @@ namespace NLayer.NET.PL.API.Providers
             }
 
             _publicClientId = publicClientId;
-            _applicationUserManager = applicationUserManager;
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            User user = await _applicationUserManager.FindAsync(context.UserName.Replace(Environment.NewLine,""), context.Password);
+            var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
+
+            User user = await userManager.FindAsync(context.UserName, context.Password);
 
             if (user == null)
             {
@@ -40,9 +40,9 @@ namespace NLayer.NET.PL.API.Providers
                 return;
             }
 
-            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(_applicationUserManager,
-               OAuthDefaults.AuthenticationType);
-            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(_applicationUserManager,
+            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
+                OAuthDefaults.AuthenticationType);
+            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
                 CookieAuthenticationDefaults.AuthenticationType);
 
             AuthenticationProperties properties = CreateProperties(user.UserName);
@@ -91,7 +91,7 @@ namespace NLayer.NET.PL.API.Providers
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
-                { "userName", userName }
+                {"userName", userName}
             };
             return new AuthenticationProperties(data);
         }
