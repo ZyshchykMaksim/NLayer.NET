@@ -22,6 +22,8 @@ using NLayer.NET.DBL;
 using NLayer.NET.DBL.Entities;
 using NLayer.NET.DBL.Repositories;
 using NLayer.NET.DBL.Repositories.Implementation;
+using NLayer.NET.PL.API.Extensions;
+using NLayer.NET.PL.API.Middlewares;
 using NLayer.NET.PL.API.Providers;
 using Owin;
 
@@ -38,6 +40,8 @@ namespace NLayer.NET.PL.API
 
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterWebApiFilterProvider(config);
+
+            builder.RegisterType<LoggingMiddleware>();
 
             builder.RegisterType<AppDbContext>().As<DbContext>().AsSelf().InstancePerRequest();
 
@@ -64,7 +68,7 @@ namespace NLayer.NET.PL.API
             app.UseAutofacMiddleware(container);
             app.UseAutofacWebApi(config);
             app.UseWebApi(config);
-
+            
             ConfigureAuth(app);
         }
     }
