@@ -7,10 +7,10 @@ using NLayer.NET.Common.Extensions;
 
 namespace NLayer.NET.PL.API
 {
-    public class AppSettings
+    public sealed class AppSettings
     {
         /*
-        public string Example => ConfigurationManager.AppSettings.GetValue<string>("AppName", "NLayer.NET.PL.API");
+        public static string Example => ConfigurationManager.AppSettings.GetValue<string>("AppName", "NLayer.NET.PL.API");
         */
     }
 }
