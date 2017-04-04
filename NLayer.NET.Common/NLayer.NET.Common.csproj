@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\ValidationException.cs" />
+    <Compile Include="Extensions\ExtConfigManager.cs" />
     <Compile Include="Pagination\Implementation\PaginatedList.cs" />
     <Compile Include="Pagination\Implementation\Paging.cs" />
     <Compile Include="Intarfeces\IPaginatedList.cs" />
