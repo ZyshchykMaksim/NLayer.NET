@@ -39,7 +39,6 @@ namespace NLayer.NET.PL.API
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterWebApiFilterProvider(config);
 
-
             builder.RegisterType<AppDbContext>().As<DbContext>().AsSelf().InstancePerRequest();
 
             builder.RegisterGeneric(typeof(UnitOfWork<>)).As(typeof(IUnitOfWork<>)).InstancePerRequest();
@@ -53,24 +52,18 @@ namespace NLayer.NET.PL.API
 
             builder.Register<IAuthenticationManager>(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
             builder.Register<IDataProtectionProvider>(c => app.GetDataProtectionProvider()).InstancePerRequest();
-            builder.Register(c => new ApplicationOAuthProvider(AuthSettings.PublicClientId,c.Resolve<ApplicationUserManager>())).AsImplementedInterfaces().InstancePerRequest();
 
             builder.RegisterType<TicketDataFormat>().As<ISecureDataFormat<AuthenticationTicket>>();
             builder.RegisterType<TicketSerializer>().As<IDataSerializer<AuthenticationTicket>>();
-
-            builder.Register(c => new DpapiDataProtectionProvider().Create("ASP.NET Identity")).As<IDataProtector>();
-            builder.Register<IdentityFactoryOptions<ApplicationUserManager>>(c => new IdentityFactoryOptions<ApplicationUserManager>() { DataProtectionProvider = new DpapiDataProtectionProvider("ASP.NET Identity") });
 
             builder.RegisterAssemblyTypes(typeof(ExternalDataService).Assembly).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerRequest();
 
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
-            
+
             app.UseAutofacMiddleware(container);
             app.UseAutofacWebApi(config);
             app.UseWebApi(config);
-
-            WebApiConfig.Register(config);
 
             ConfigureAuth(app);
         }

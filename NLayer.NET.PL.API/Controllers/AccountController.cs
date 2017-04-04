@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using System.Web;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
@@ -18,30 +20,30 @@ using NLayer.NET.PL.API.Results;
 namespace NLayer.NET.PL.API.Controllers
 {
     /*See https://metanit.com/sharp/aspnet_webapi/5.1.php */
+
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";
+        private ApplicationUserManager _userManager;
 
-        private readonly ApplicationUserManager _userManager;
-        private readonly IAuthenticationManager _authManager;
-        private readonly ISecureDataFormat<AuthenticationTicket> _secureDataFormat;
+
+        private IAuthenticationManager Authentication => Request.GetOwinContext().Authentication;
+
+        public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
+
+        public ApplicationUserManager UserManager => _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, IAuthenticationManager authManager, ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
+        public AccountController(ApplicationUserManager userManager, ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
         {
             _userManager = userManager;
-            _authManager = authManager;
-            _secureDataFormat = accessTokenFormat;
+            AccessTokenFormat = accessTokenFormat;
         }
-
-        private ApplicationUserManager UserManager => _userManager;
-        private IAuthenticationManager AuthenticationManager => _authManager;
-        public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat => _secureDataFormat;
 
         // GET api/Account/UserInfo
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
@@ -62,7 +64,7 @@ namespace NLayer.NET.PL.API.Controllers
         [Route("Logout")]
         public IHttpActionResult Logout()
         {
-            AuthenticationManager.SignOut(CookieAuthenticationDefaults.AuthenticationType);
+            Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
             return Ok();
         }
 
@@ -154,7 +156,7 @@ namespace NLayer.NET.PL.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+            Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
 
             AuthenticationTicket ticket = AccessTokenFormat.Unprotect(model.ExternalAccessToken);
 
@@ -238,7 +240,7 @@ namespace NLayer.NET.PL.API.Controllers
 
             if (externalLogin.LoginProvider != provider)
             {
-                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+                Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
                 return new ChallengeResult(provider, this);
             }
 
@@ -249,7 +251,7 @@ namespace NLayer.NET.PL.API.Controllers
 
             if (hasRegistered)
             {
-                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+                Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
 
                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
                    OAuthDefaults.AuthenticationType);
@@ -257,13 +259,13 @@ namespace NLayer.NET.PL.API.Controllers
                     CookieAuthenticationDefaults.AuthenticationType);
 
                 AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
-                AuthenticationManager.SignIn(properties, oAuthIdentity, cookieIdentity);
+                Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
             }
             else
             {
                 IEnumerable<Claim> claims = externalLogin.GetClaims();
                 ClaimsIdentity identity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
-                AuthenticationManager.SignIn(identity);
+                Authentication.SignIn(identity);
             }
 
             return Ok();
@@ -274,7 +276,7 @@ namespace NLayer.NET.PL.API.Controllers
         [Route("ExternalLogins")]
         public IEnumerable<ExternalLoginViewModel> GetExternalLogins(string returnUrl, bool generateState = false)
         {
-            IEnumerable<AuthenticationDescription> descriptions = AuthenticationManager.GetExternalAuthenticationTypes();
+            IEnumerable<AuthenticationDescription> descriptions = Authentication.GetExternalAuthenticationTypes();
             List<ExternalLoginViewModel> logins = new List<ExternalLoginViewModel>();
 
             string state;
@@ -298,7 +300,7 @@ namespace NLayer.NET.PL.API.Controllers
                     {
                         provider = description.AuthenticationType,
                         response_type = "token",
-                        client_id = AuthSettings.PublicClientId,
+                        client_id = Startup.PublicClientId,
                         redirect_uri = new Uri(Request.RequestUri, returnUrl).AbsoluteUri,
                         state = state
                     }),
@@ -343,7 +345,7 @@ namespace NLayer.NET.PL.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var info = await AuthenticationManager.GetExternalLoginInfoAsync();
+            var info = await Authentication.GetExternalLoginInfoAsync();
             if (info == null)
             {
                 return InternalServerError();
@@ -365,6 +367,16 @@ namespace NLayer.NET.PL.API.Controllers
             return Ok();
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && _userManager != null)
+            {
+                _userManager.Dispose();
+                _userManager = null;
+            }
+
+            base.Dispose(disposing);
+        }
 
         #region Helpers
 
@@ -468,4 +480,5 @@ namespace NLayer.NET.PL.API.Controllers
 
         #endregion
     }
+
 }
