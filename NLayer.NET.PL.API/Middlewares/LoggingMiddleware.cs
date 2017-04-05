@@ -16,7 +16,7 @@ namespace NLayer.NET.PL.API.Middlewares
     public class LoggingMiddleware : OwinMiddleware
     {
         private readonly ILog<LoggingMiddleware> _logService;
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -34,18 +34,27 @@ namespace NLayer.NET.PL.API.Middlewares
         /// <returns></returns>
         public override async Task Invoke(IOwinContext context)
         {
-            var startTime = DateTime.UtcNow;
+            try
+            {
+                var startTime = DateTime.UtcNow;
 
-            var watch = Stopwatch.StartNew();
-            await Next.Invoke(context);
-            watch.Stop();
+                var watch = Stopwatch.StartNew();
+                await Next.Invoke(context);
+                watch.Stop();
 
-            string logTemplate = $"{context.Request.Method} {context.Request.LocalIpAddress} {context.Request.Path} {Environment.NewLine}" +
-                                  $"Start time: {startTime} Duration: {watch.ElapsedMilliseconds} milliseconds {Environment.NewLine}" +
-                                  $"Request Headers: {Environment.NewLine} {context.Request.GetHeaderParameters()}" +
-                                  $"Body: {Environment.NewLine} {context.Request.GetBodyParameters()}";
+                string userName = context.Request.User != null && context.Request.User.Identity.IsAuthenticated ? context.Request.User.Identity.Name : "Anonymous";
+                string logTemplate = $"{context.Request.Method} {userName} {context.Request.Path} {Environment.NewLine}" +
+                                     $"Start time: {startTime} Duration: {watch.ElapsedMilliseconds} milliseconds {Environment.NewLine}" +
+                                     $"Request Headers:{Environment.NewLine}{context.Request.GetHeaderParameters().ConvertToString()}{Environment.NewLine}" +
+                                     $"Body:{Environment.NewLine}{context.Request.GetBody()}";
 
-            //_logService.Info();
+                _logService.Info(logTemplate);
+
+            }
+            catch (Exception e)
+            {
+                Trace.WriteLine(e);
+            }
         }
     }
 }

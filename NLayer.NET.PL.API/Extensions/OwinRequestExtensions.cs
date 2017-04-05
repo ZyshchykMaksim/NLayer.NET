@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using Microsoft.Owin;
 
@@ -36,22 +37,16 @@ namespace NLayer.NET.PL.API.Extensions
         /// </summary>
         /// <param name="request">Owin Request.</param>
         /// <returns>Dictionary of form body parameters.</returns>
-        public static Dictionary<string, string> GetBodyParameters(this IOwinRequest request)
+        public static string GetBody(this IOwinRequest request)
         {
-            var dictionary = new Dictionary<string, string>(StringComparer.CurrentCultureIgnoreCase);
-
-            var formCollectionTask = request.ReadFormAsync();
-
-            formCollectionTask.Wait();
-
-            foreach (var pair in formCollectionTask.Result)
+            try
             {
-                var value = GetJoinedValue(pair.Value);
-
-                dictionary.Add(pair.Key, value);
+                return new StreamReader(request.Body).ReadToEnd();
             }
-
-            return dictionary;
+            catch (Exception ex)
+            {
+                return String.Empty;
+            }
         }
 
         /// <summary>

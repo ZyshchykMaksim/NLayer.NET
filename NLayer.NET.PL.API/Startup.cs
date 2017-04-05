@@ -41,8 +41,6 @@ namespace NLayer.NET.PL.API
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterWebApiFilterProvider(config);
 
-            builder.RegisterType<LoggingMiddleware>();
-
             builder.RegisterType<AppDbContext>().As<DbContext>().AsSelf().InstancePerRequest();
 
             builder.RegisterGeneric(typeof(UnitOfWork<>)).As(typeof(IUnitOfWork<>)).InstancePerRequest();
@@ -62,13 +60,15 @@ namespace NLayer.NET.PL.API
 
             builder.RegisterAssemblyTypes(typeof(ExternalDataService).Assembly).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerRequest();
 
+            builder.RegisterType<LoggingMiddleware>();
+
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
 
             app.UseAutofacMiddleware(container);
             app.UseAutofacWebApi(config);
             app.UseWebApi(config);
-            
+
             ConfigureAuth(app);
         }
     }
