@@ -41,7 +41,10 @@ namespace NLayer.NET.PL.API.Extensions
         {
             try
             {
-                return new StreamReader(request.Body).ReadToEnd();
+                using (StreamReader reader = new StreamReader(request.Body))
+                {
+                    return reader.ReadToEnd();
+                }
             }
             catch (Exception ex)
             {
@@ -56,9 +59,24 @@ namespace NLayer.NET.PL.API.Extensions
         /// <returns>Dictionary of header parameters.</returns>
         public static Dictionary<string, string> GetHeaderParameters(this IOwinRequest request)
         {
+            return GetHeader(request.Headers);
+        }
+
+        /// <summary>
+        /// Gets the header response parameters.
+        /// </summary>
+        /// <param name="response">Owin response.</param>
+        /// <returns>Dictionary of header parameters.</returns>
+        public static Dictionary<string, string> GetHeaderParameters(this IOwinResponse response)
+        {
+            return GetHeader(response.Headers);
+        }
+
+        private static Dictionary<string, string> GetHeader(IHeaderDictionary headerDictionary)
+        {
             var dictionary = new Dictionary<string, string>(StringComparer.CurrentCultureIgnoreCase);
 
-            foreach (var pair in request.Headers)
+            foreach (var pair in headerDictionary)
             {
                 var value = GetJoinedValue(pair.Value);
 
@@ -67,6 +85,8 @@ namespace NLayer.NET.PL.API.Extensions
 
             return dictionary;
         }
+
+      
 
         private static string GetJoinedValue(string[] value)
         {

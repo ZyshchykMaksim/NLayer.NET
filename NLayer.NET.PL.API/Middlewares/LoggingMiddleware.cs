@@ -10,6 +10,8 @@ using NLayer.NET.PL.API.Extensions;
 
 namespace NLayer.NET.PL.API.Middlewares
 {
+    //See https://gist.github.com/vicentedealencar/48dd74e28e7a3584da8aa
+
     /// <summary>
     /// 
     /// </summary>
@@ -34,19 +36,19 @@ namespace NLayer.NET.PL.API.Middlewares
         /// <returns></returns>
         public override async Task Invoke(IOwinContext context)
         {
-            var startTime = DateTime.UtcNow;
-
             var watch = Stopwatch.StartNew();
             await Next.Invoke(context);
             watch.Stop();
 
             string userName = context.Request.User != null && context.Request.User.Identity.IsAuthenticated ? context.Request.User.Identity.Name : "Anonymous";
-            string logTemplate = $"{context.Request.Method} {userName} {context.Request.Path} {Environment.NewLine}" +
-                                 $"Start time: {startTime} Duration: {watch.ElapsedMilliseconds} milliseconds {Environment.NewLine}" +
-                                 $"Request Headers:{Environment.NewLine}{context.Request.GetHeaderParameters().ConvertToString()}{Environment.NewLine}" +
-                                 $"Body:{Environment.NewLine}{context.Request.GetBody()}";
 
-            _logService.Info(logTemplate);
+            string logTemplateRequest = $"Request => {context.Request.Method} {userName} {context.Request.Path} {Environment.NewLine}" +
+                                        $"Request Headers:{Environment.NewLine}{context.Request.GetHeaderParameters().ConvertToString()}{Environment.NewLine}" +
+                                        $"Body:{context.Request.GetBody()}{Environment.NewLine}";
+            _logService.Info(logTemplateRequest);
+
+            string logTemplateResponse = $"Response => {context.Response.StatusCode} ContextType: {context.Response.ContentType} Duration: {watch.ElapsedMilliseconds} milliseconds";
+            _logService.Info(logTemplateResponse);
         }
     }
 }

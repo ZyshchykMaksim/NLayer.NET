@@ -224,7 +224,7 @@
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\MiddlewareExtensions.cs" />
-    <Compile Include="Extensions\OwinRequestExtensions.cs" />
+    <Compile Include="Extensions\OwinContextExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
