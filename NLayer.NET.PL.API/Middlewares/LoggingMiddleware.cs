@@ -34,27 +34,19 @@ namespace NLayer.NET.PL.API.Middlewares
         /// <returns></returns>
         public override async Task Invoke(IOwinContext context)
         {
-            try
-            {
-                var startTime = DateTime.UtcNow;
+            var startTime = DateTime.UtcNow;
 
-                var watch = Stopwatch.StartNew();
-                await Next.Invoke(context);
-                watch.Stop();
+            var watch = Stopwatch.StartNew();
+            await Next.Invoke(context);
+            watch.Stop();
 
-                string userName = context.Request.User != null && context.Request.User.Identity.IsAuthenticated ? context.Request.User.Identity.Name : "Anonymous";
-                string logTemplate = $"{context.Request.Method} {userName} {context.Request.Path} {Environment.NewLine}" +
-                                     $"Start time: {startTime} Duration: {watch.ElapsedMilliseconds} milliseconds {Environment.NewLine}" +
-                                     $"Request Headers:{Environment.NewLine}{context.Request.GetHeaderParameters().ConvertToString()}{Environment.NewLine}" +
-                                     $"Body:{Environment.NewLine}{context.Request.GetBody()}";
+            string userName = context.Request.User != null && context.Request.User.Identity.IsAuthenticated ? context.Request.User.Identity.Name : "Anonymous";
+            string logTemplate = $"{context.Request.Method} {userName} {context.Request.Path} {Environment.NewLine}" +
+                                 $"Start time: {startTime} Duration: {watch.ElapsedMilliseconds} milliseconds {Environment.NewLine}" +
+                                 $"Request Headers:{Environment.NewLine}{context.Request.GetHeaderParameters().ConvertToString()}{Environment.NewLine}" +
+                                 $"Body:{Environment.NewLine}{context.Request.GetBody()}";
 
-                _logService.Info(logTemplate);
-
-            }
-            catch (Exception e)
-            {
-                Trace.WriteLine(e);
-            }
+            _logService.Info(logTemplate);
         }
     }
 }
