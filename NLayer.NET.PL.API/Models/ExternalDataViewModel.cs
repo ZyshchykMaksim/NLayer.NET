@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NLayer.NET.PL.API.Models
+namespace NLayer.PL.API.Models
 {
     public class ExternalDataViewModel
     {

@@ -1,21 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.DataProtection;
-using NLayer.NET.DBL;
-using NLayer.NET.DBL.Entities;
-using NLayer.NET.PL.Models;
+using NLayer.DAL;
+using NLayer.DAL.Entities;
 
-namespace NLayer.NET.PL
+namespace NLayer.PL
 {
     public class EmailService : IIdentityMessageService
     {

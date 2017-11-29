@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using AutoMapper;
-using NLayer.NET.BLL.Modals;
-using NLayer.NET.PL.Models;
+﻿using AutoMapper;
+using NLayer.BLL.Modals;
+using NLayer.PL.Models;
 
-namespace NLayer.NET.PL.Mappings
+namespace NLayer.PL.Mappings
 {
     public class PlMapping : Profile
     {

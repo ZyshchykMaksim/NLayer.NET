@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using Microsoft.Owin;
 using NLayer.Logging;
-using NLayer.NET.PL.API.Extensions;
+using NLayer.PL.API.Extensions;
 
-namespace NLayer.NET.PL.API.Middlewares
+namespace NLayer.PL.API.Middlewares
 {
     //See https://gist.github.com/vicentedealencar/48dd74e28e7a3584da8aa
 

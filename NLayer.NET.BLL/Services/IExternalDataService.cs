@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NLayer.BLL.Modals;
 using NLayer.Common;
-using NLayer.NET.BLL.Modals;
 
-namespace NLayer.NET.BLL.Services
+namespace NLayer.BLL.Services
 {
     public interface IExternalDataService
     {

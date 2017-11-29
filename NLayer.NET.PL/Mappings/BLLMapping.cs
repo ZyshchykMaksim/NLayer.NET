@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using NLayer.NET.BLL.Modals;
-using NLayer.NET.DBL.Entities;
+using NLayer.BLL.Modals;
+using NLayer.DAL.Entities;
 
-namespace NLayer.NET.PL.Mappings
+namespace NLayer.PL.Mappings
 {
     public class BllMapping : Profile
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using NLayer.NET.DBL.Entities;
+using NLayer.DAL.Entities;
 
-namespace NLayer.NET.DBL
+namespace NLayer.DAL
 {
     public abstract class DbContextBase : IdentityDbContext<User>
     {

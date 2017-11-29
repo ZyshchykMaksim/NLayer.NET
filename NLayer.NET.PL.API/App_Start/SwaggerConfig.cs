@@ -1,13 +1,13 @@
 using System.Web.Http;
 using WebActivatorEx;
-using NLayer.NET.PL.API;
+using NLayer.PL.API;
 using Swashbuckle.Application;
 using System;
 using System.Xml.XPath;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
-namespace NLayer.NET.PL.API
+namespace NLayer.PL.API
 {
     public class SwaggerConfig
     {
@@ -34,7 +34,7 @@ namespace NLayer.NET.PL.API
                         // hold additional metadata for an API. Version and title are required but you can also provide
                         // additional fields by chaining methods off SingleApiVersion.
                         //
-                        c.SingleApiVersion("v1", "NLayer.NET.PL.API");
+                        c.SingleApiVersion("v1", "NLayer.PL.API");
 
                         // If your API has multiple versions, use "MultipleApiVersions" instead of "SingleApiVersion".
                         // In this case, you must provide a lambda that tells Swashbuckle which actions should be
@@ -247,7 +247,7 @@ namespace NLayer.NET.PL.API
 
         private static string GetXmlCommentsPath()
         {
-            return string.Format(@"{0}\bin\NLayer.NET.PL.API.XML", AppDomain.CurrentDomain.BaseDirectory);            
+            return string.Format(@"{0}\bin\NLayer.PL.API.XML", AppDomain.CurrentDomain.BaseDirectory);            
         }
     }
 }

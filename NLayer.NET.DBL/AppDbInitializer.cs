@@ -1,9 +1,9 @@
-﻿using NLayer.NET.DBL.Entities;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using NLayer.DAL.Entities;
 
-namespace NLayer.NET.DBL
+namespace NLayer.DAL
 {
     /// <summary>
     /// It will create the database if none exists as per the configuration. 

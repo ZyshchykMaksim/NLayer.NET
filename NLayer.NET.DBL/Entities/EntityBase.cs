@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace NLayer.NET.DBL.Entities
+namespace NLayer.DAL.Entities
 {
     public class EntityBase
     {

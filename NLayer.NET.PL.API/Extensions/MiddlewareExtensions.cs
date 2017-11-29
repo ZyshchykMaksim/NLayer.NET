@@ -1,8 +1,8 @@
 ﻿using NLayer.Logging.NLog;
-using NLayer.NET.PL.API.Middlewares;
+using NLayer.PL.API.Middlewares;
 using Owin;
 
-namespace NLayer.NET.PL.API.Extensions
+namespace NLayer.PL.API.Extensions
 {
     /// <summary>
     /// 

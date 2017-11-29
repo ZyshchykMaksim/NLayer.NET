@@ -12,12 +12,12 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using NLayer.NET.DBL.Entities;
-using NLayer.NET.PL.API.Models;
-using NLayer.NET.PL.API.Providers;
-using NLayer.NET.PL.API.Results;
+using NLayer.DAL.Entities;
+using NLayer.PL.API.Models;
+using NLayer.PL.API.Providers;
+using NLayer.PL.API.Results;
 
-namespace NLayer.NET.PL.API.Controllers
+namespace NLayer.PL.API.Controllers
 {
     /*See https://metanit.com/sharp/aspnet_webapi/5.1.php */
 

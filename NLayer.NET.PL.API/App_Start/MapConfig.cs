@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
+using NLayer.PL.API.Mappings;
 
-using NLayer.NET.PL.API.Mappings;
-
-namespace NLayer.NET.PL.API
+namespace NLayer.PL.API
 {
     public class MapConfig
     {

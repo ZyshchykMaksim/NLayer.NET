@@ -5,17 +5,17 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using NLayer.NET.DBL.Entities;
-using NLayer.NET.PL.Models;
+using NLayer.DAL.Entities;
+using NLayer.PL.Models;
 
-namespace NLayer.NET.PL.Controllers
+namespace NLayer.PL.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        private readonly ApplicationUserManager _userManager;
-        private readonly ApplicationSignInManager _signInManager;
-        private readonly IAuthenticationManager _authManager;
+        private readonly ApplicationUserManager userManager;
+        private readonly ApplicationSignInManager signInManager;
+        private readonly IAuthenticationManager authManager;
 
         public AccountController()
         {
@@ -24,16 +24,16 @@ namespace NLayer.NET.PL.Controllers
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IAuthenticationManager authManager)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _authManager = authManager;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+            this.authManager = authManager;
         }
 
-        private ApplicationSignInManager SignInManager => _signInManager;
+        private ApplicationSignInManager SignInManager => signInManager;
 
-        private ApplicationUserManager UserManager => _userManager;
+        private ApplicationUserManager UserManager => userManager;
 
-        private IAuthenticationManager AuthenticationManager => _authManager;
+        private IAuthenticationManager AuthenticationManager => authManager;
 
         //
         // GET: /Account/Login

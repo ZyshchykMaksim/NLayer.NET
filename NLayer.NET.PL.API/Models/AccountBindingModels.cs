@@ -1,8 +1,6 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace NLayer.NET.PL.API.Models
+namespace NLayer.PL.API.Models
 {
     // Models used as parameters to AccountController actions.
 

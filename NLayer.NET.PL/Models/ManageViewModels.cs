@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace NLayer.NET.PL.Models
+namespace NLayer.PL.Models
 {
     public class IndexViewModel
     {

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using AutoMapper;
+﻿using AutoMapper;
+using NLayer.PL.Mappings;
 
-using NLayer.NET.PL.Mappings;
-
-namespace NLayer.NET.PL
+namespace NLayer.PL
 {
     public class MapConfig
     {

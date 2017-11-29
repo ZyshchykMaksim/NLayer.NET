@@ -2,7 +2,7 @@
 using NLayer.Logging;
 using NLayer.Logging.NLog;
 
-namespace NLayer.NET.PL.Filters
+namespace NLayer.PL.Filters
 {
     /// <summary>
     /// Internal filter attribute

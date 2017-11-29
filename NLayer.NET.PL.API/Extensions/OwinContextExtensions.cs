@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Web;
 using Microsoft.Owin;
 
-namespace NLayer.NET.PL.API.Extensions
+namespace NLayer.PL.API.Extensions
 {
     /// <summary>
     /// Owin Request extensions.

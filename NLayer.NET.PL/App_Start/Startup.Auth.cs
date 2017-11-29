@@ -3,10 +3,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using NLayer.NET.DBL.Entities;
+using NLayer.DAL.Entities;
 using Owin;
 
-namespace NLayer.NET.PL
+namespace NLayer.PL
 {
     //TODO Refactoring
     public partial class Startup

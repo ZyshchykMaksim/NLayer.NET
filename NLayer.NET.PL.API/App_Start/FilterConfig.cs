@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-namespace NLayer.NET.PL.API
+namespace NLayer.PL.API
 {
     public class FilterConfig
     {

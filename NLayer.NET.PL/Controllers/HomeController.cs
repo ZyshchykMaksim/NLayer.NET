@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using NLayer.BLL.Modals;
+using NLayer.BLL.Services;
 using NLayer.Common;
 using NLayer.Logging;
-using NLayer.NET.BLL.Modals;
-using NLayer.NET.BLL.Services;
 
-namespace NLayer.NET.PL.Controllers
+namespace NLayer.PL.Controllers
 {
     public class HomeController : Controller
     {

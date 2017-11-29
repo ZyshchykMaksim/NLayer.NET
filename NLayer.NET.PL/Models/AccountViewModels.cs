@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace NLayer.NET.PL.Models
+namespace NLayer.PL.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

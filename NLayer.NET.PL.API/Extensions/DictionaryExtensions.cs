@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
-namespace NLayer.NET.PL.API.Extensions
+namespace NLayer.PL.API.Extensions
 {
     public static class DictionaryExtensions
     {

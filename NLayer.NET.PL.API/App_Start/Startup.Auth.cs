@@ -3,11 +3,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using NLayer.NET.DBL;
+using NLayer.DAL;
+using NLayer.PL.API.Providers;
 using Owin;
-using NLayer.NET.PL.API.Providers;
 
-namespace NLayer.NET.PL.API
+namespace NLayer.PL.API
 {
     public partial class Startup
     {

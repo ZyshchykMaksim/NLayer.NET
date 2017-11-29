@@ -7,8 +7,8 @@
     <ProjectGuid>{23B32CAA-B32F-47A0-B99F-682A07E27721}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NLayer.NET.DBL</RootNamespace>
-    <AssemblyName>NLayer.NET.DBL</AssemblyName>
+    <RootNamespace>NLayer.DAL</RootNamespace>
+    <AssemblyName>NLayer.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

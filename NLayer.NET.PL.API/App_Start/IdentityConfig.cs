@@ -1,18 +1,14 @@
-﻿using System;
-using System.Configuration;
-using System.Threading.Tasks;
+﻿using System.Configuration;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using Microsoft.Owin.Security.DataProtection;
-using NLayer.NET.DBL;
-using NLayer.NET.DBL.Entities;
-using NLayer.NET.PL.API.Configurations;
-using NLayer.NET.PL.API.Models;
+using NLayer.DAL;
+using NLayer.DAL.Entities;
+using NLayer.PL.API.Configurations;
 using PasswordValidator = Microsoft.AspNet.Identity.PasswordValidator;
 
-namespace NLayer.NET.PL.API
+namespace NLayer.PL.API
 {
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
 

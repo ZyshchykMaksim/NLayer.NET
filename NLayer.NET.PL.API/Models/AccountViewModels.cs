@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace NLayer.NET.PL.API.Models
+namespace NLayer.PL.API.Models
 {
     // Models returned by AccountController actions.
 

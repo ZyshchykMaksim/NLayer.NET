@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using NLayer.BLL.Modals;
 using NLayer.Common;
 using NLayer.DataAccess.DB;
 using NLayer.DataAccess.DB.EF;
 using NLayer.DataAccess.DB.EF.Extensions;
+using NLayer.DAL;
+using NLayer.DAL.Entities;
 using NLayer.Logging;
-using NLayer.NET.BLL.Modals;
-using NLayer.NET.DBL;
-using NLayer.NET.DBL.Entities;
 
-
-namespace NLayer.NET.BLL.Services.Implementation
+namespace NLayer.BLL.Services.Implementation
 {
     public class ExternalDataService : IExternalDataService
     {

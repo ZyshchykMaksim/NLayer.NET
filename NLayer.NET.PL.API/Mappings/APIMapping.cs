@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using NLayer.NET.BLL.Modals;
-using NLayer.NET.PL.API.Models;
+using NLayer.BLL.Modals;
+using NLayer.PL.API.Models;
 
-namespace NLayer.NET.PL.API.Mappings
+namespace NLayer.PL.API.Mappings
 {
 
     public class ApiMapping : Profile

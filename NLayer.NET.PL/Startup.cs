@@ -9,19 +9,19 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.DataProtection;
+using NLayer.BLL.Services.Implementation;
 using NLayer.DataAccess.DB;
 using NLayer.DataAccess.DB.EF;
 using NLayer.DataAccess.DB.EF.Extensions;
+using NLayer.DAL;
+using NLayer.DAL.Entities;
 using NLayer.Logging;
 using NLayer.Logging.NLog;
-using NLayer.NET.BLL.Services.Implementation;
-using NLayer.NET.DBL;
-using NLayer.NET.DBL.Entities;
-
+using NLayer.PL;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(NLayer.NET.PL.Startup))]
-namespace NLayer.NET.PL
+[assembly: OwinStartup(typeof(Startup))]
+namespace NLayer.PL
 {
     public partial class Startup
     {
