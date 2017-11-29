@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using AutoMapper;
-using NLayer.NET.BLL.Mappings;
+
 using NLayer.NET.PL.Mappings;
 
 namespace NLayer.NET.PL
@@ -14,8 +14,8 @@ namespace NLayer.NET.PL
         {
             Mapper.Initialize(cfg =>
             {
-                cfg.AddProfile<BLLMapping>();
-                cfg.AddProfile<PLMapping>();
+                cfg.AddProfile<BllMapping>();
+                cfg.AddProfile<PlMapping>();
             });
         }
     }

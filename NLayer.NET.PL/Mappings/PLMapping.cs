@@ -8,11 +8,11 @@ using NLayer.NET.PL.Models;
 
 namespace NLayer.NET.PL.Mappings
 {
-    public class PLMapping : Profile
+    public class PlMapping : Profile
     {
         public override string ProfileName => "PLMapping";
 
-        public PLMapping()
+        public PlMapping()
         {
             //TODO Add your new mapping
             CreateMap<ExternalDataDTO, ExternalDataViewModel>();

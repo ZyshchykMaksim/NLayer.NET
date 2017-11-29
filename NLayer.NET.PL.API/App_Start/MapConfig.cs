@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using NLayer.NET.BLL.Mappings;
-using NLayer.NET.PL.Mappings;
+
+using NLayer.NET.PL.API.Mappings;
 
 namespace NLayer.NET.PL.API
 {
@@ -10,8 +10,8 @@ namespace NLayer.NET.PL.API
         {
             Mapper.Initialize(cfg =>
             {
-                cfg.AddProfile<BLLMapping>();
-                cfg.AddProfile<APIMapping>();
+                //cfg.AddProfile<BLLMapping>();
+                cfg.AddProfile<ApiMapping>();
             });
         }
     }

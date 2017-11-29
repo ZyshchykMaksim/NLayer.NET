@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
-using NLayer.NET.BLL.Logger;
 using NLayer.NET.DBL;
-using NLayer.NET.DBL.Entities;
-using NLayer.NET.PL.API.Extensions;
 using Owin;
 using NLayer.NET.PL.API.Providers;
-using NLayer.NET.PL.API.Models;
 
 namespace NLayer.NET.PL.API
 {

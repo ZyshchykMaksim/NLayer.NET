@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using NLayer.NET.BLL.Logger;
+﻿using NLayer.Logging.NLog;
 using NLayer.NET.PL.API.Middlewares;
 using Owin;
 

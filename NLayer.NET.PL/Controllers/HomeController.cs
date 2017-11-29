@@ -1,32 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using NLayer.NET.BLL.Logger;
+using NLayer.Common;
+using NLayer.Logging;
 using NLayer.NET.BLL.Modals;
 using NLayer.NET.BLL.Services;
-using NLayer.NET.Common.Intarfeces;
 
 namespace NLayer.NET.PL.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IExternalDataService _externalDataService;
-        private readonly ILog<AccountController> _logService;
+        private readonly IExternalDataService externalDataService;
+        private readonly ILog<AccountController> logService;
 
         public HomeController(IExternalDataService externalDataService, ILogFactory logFactory)
         {
-            _externalDataService = externalDataService;
-            _logService = logFactory.CreateLogger<AccountController>();
+            this.externalDataService = externalDataService;
+            logService = logFactory.CreateLogger<AccountController>();
         }
 
         public ActionResult Index()
         {
-            _logService.Info("GET HomeController.Index");
+            logService.Info("GET HomeController.Index");
 
-            IResult<IList<ExternalDataDTO>> externalDatas = _externalDataService.GetUsers();
-            IResult<ExternalDataDTO> externalData = _externalDataService.GetUser(Guid.NewGuid());
+            ResultModel<IList<ExternalDataDTO>> externalDatas = externalDataService.GetUsers();
+            ResultModel<ExternalDataDTO> externalData = externalDataService.GetUser(Guid.NewGuid());
             return View();
         }
 

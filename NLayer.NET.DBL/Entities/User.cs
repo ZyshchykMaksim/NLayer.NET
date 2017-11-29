@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using NLayer.NET.DBL.DB;
 
 namespace NLayer.NET.DBL.Entities
 {

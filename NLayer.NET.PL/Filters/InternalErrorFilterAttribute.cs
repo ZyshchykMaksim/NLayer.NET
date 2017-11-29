@@ -1,5 +1,6 @@
-﻿using NLayer.NET.BLL.Logger;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using NLayer.Logging;
+using NLayer.Logging.NLog;
 
 namespace NLayer.NET.PL.Filters
 {
@@ -11,7 +12,7 @@ namespace NLayer.NET.PL.Filters
         /// <summary>
         /// Log service
         /// </summary>
-        private readonly ILog<InternalErrorFilterAttribute> _logService = (new LogFactory()).CreateLogger<InternalErrorFilterAttribute>();
+        private readonly ILog<InternalErrorFilterAttribute> logService = (new LogFactory()).CreateLogger<InternalErrorFilterAttribute>();
 
         /// <summary>
         /// Handle exception
@@ -19,7 +20,7 @@ namespace NLayer.NET.PL.Filters
         /// <param name="context"></param>
         public void OnException(ExceptionContext context)
         {
-            _logService.Error(context.Exception.Message, context.Exception);
+            logService.Error(context.Exception.Message, context.Exception);
 
             context.ExceptionHandled = true;
         }

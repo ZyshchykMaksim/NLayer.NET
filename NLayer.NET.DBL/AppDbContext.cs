@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using NLayer.NET.DBL.DB;
 using NLayer.NET.DBL.Entities;
 
 namespace NLayer.NET.DBL

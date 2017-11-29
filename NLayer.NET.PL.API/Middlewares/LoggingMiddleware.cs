@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.Owin;
-using NLayer.NET.BLL.Logger;
+using NLayer.Logging;
 using NLayer.NET.PL.API.Extensions;
 
 namespace NLayer.NET.PL.API.Middlewares
@@ -17,7 +17,7 @@ namespace NLayer.NET.PL.API.Middlewares
     /// </summary>
     public class LoggingMiddleware : OwinMiddleware
     {
-        private readonly ILog<LoggingMiddleware> _logService;
+        private readonly ILog<LoggingMiddleware> logService;
 
         /// <summary>
         /// 
@@ -26,7 +26,7 @@ namespace NLayer.NET.PL.API.Middlewares
         /// <param name="logFactory">The logging service</param>
         public LoggingMiddleware(OwinMiddleware next, ILogFactory logFactory) : base(next)
         {
-            _logService = logFactory.CreateLogger<LoggingMiddleware>();
+            logService = logFactory.CreateLogger<LoggingMiddleware>();
         }
 
         /// <summary>
@@ -45,10 +45,10 @@ namespace NLayer.NET.PL.API.Middlewares
             string logTemplateRequest = $"Request => {context.Request.Method} {userName} {context.Request.Path} {Environment.NewLine}" +
                                         $"Request Headers:{Environment.NewLine}{context.Request.GetHeaderParameters().ConvertToString()}{Environment.NewLine}" +
                                         $"Body:{context.Request.GetBody()}{Environment.NewLine}";
-            _logService.Info(logTemplateRequest);
+            logService.Info(logTemplateRequest);
 
             string logTemplateResponse = $"Response => {context.Response.StatusCode} ContextType: {context.Response.ContentType} Duration: {watch.ElapsedMilliseconds} milliseconds";
-            _logService.Info(logTemplateResponse);
+            logService.Info(logTemplateResponse);
         }
     }
 }

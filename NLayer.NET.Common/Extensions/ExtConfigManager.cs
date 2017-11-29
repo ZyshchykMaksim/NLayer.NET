@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NLayer.NET.Common.Extensions
+namespace NLayer.Common.Extensions
 {
     public static class ExtConfigManager
     {

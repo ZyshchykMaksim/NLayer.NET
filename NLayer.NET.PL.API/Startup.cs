@@ -1,30 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 using System.Reflection;
 using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.DataHandler;
 using Microsoft.Owin.Security.DataHandler.Serializer;
 using Microsoft.Owin.Security.DataProtection;
-using NLayer.NET.BLL.Logger;
+using NLayer.DataAccess.DB;
+using NLayer.DataAccess.DB.EF;
+using NLayer.Logging;
+using NLayer.Logging.NLog;
 using NLayer.NET.BLL.Services.Implementation;
 using NLayer.NET.DBL;
 using NLayer.NET.DBL.Entities;
-using NLayer.NET.DBL.Repositories;
-using NLayer.NET.DBL.Repositories.Implementation;
-using NLayer.NET.PL.API.Extensions;
 using NLayer.NET.PL.API.Middlewares;
-using NLayer.NET.PL.API.Providers;
 using Owin;
 
 [assembly: OwinStartup(typeof(NLayer.NET.PL.API.Startup))]
@@ -43,7 +37,7 @@ namespace NLayer.NET.PL.API
 
             builder.RegisterType<AppDbContext>().As<DbContext>().AsSelf().InstancePerRequest();
 
-            builder.RegisterGeneric(typeof(UnitOfWork<>)).As(typeof(IUnitOfWork<>)).InstancePerRequest();
+            builder.RegisterType<UnitOfWork>().As<ITransactionalUnitOfWork>();
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerRequest();
 
             builder.RegisterType<LogFactory>().As<ILogFactory>().InstancePerRequest();
@@ -58,7 +52,9 @@ namespace NLayer.NET.PL.API
             builder.RegisterType<TicketDataFormat>().As<ISecureDataFormat<AuthenticationTicket>>();
             builder.RegisterType<TicketSerializer>().As<IDataSerializer<AuthenticationTicket>>();
 
-            builder.RegisterAssemblyTypes(typeof(ExternalDataService).Assembly).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerRequest();
+            builder.RegisterAssemblyTypes(typeof(ExternalDataService).Assembly)
+                .Where(t => t.Name.EndsWith("Service"))
+                .AsImplementedInterfaces().InstancePerRequest();
 
             builder.RegisterType<LoggingMiddleware>();
 

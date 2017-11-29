@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NLayer.NET.PL.API</RootNamespace>
     <AssemblyName>NLayer.NET.PL.API</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -26,6 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -91,9 +92,9 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -261,13 +262,33 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NLayer.DataAccess.DB.EF.Extensions\NLayer.DataAccess.DB.EF.Extensions.csproj">
+      <Project>{02ffc82c-c57a-482e-a4b8-8171b2ad2ec8}</Project>
+      <Name>NLayer.DataAccess.DB.EF.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NLayer.DataAccess.DB.EF\NLayer.DataAccess.DB.EF.csproj">
+      <Project>{ddff92e6-00a1-4202-8930-1e3dedfe99c6}</Project>
+      <Name>NLayer.DataAccess.DB.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NLayer.DataAccess.DB\NLayer.DataAccess.DB.csproj">
+      <Project>{483b6506-baf2-4c7c-9e34-188f59d9dcf0}</Project>
+      <Name>NLayer.DataAccess.DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NLayer.Logging.NLog\NLayer.Logging.NLog.csproj">
+      <Project>{9169c956-f577-4b69-bb8a-34b7574a5dfd}</Project>
+      <Name>NLayer.Logging.NLog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NLayer.Logging\NLayer.Logging.csproj">
+      <Project>{c548f3f1-afff-4aa2-bfee-74a6a710b644}</Project>
+      <Name>NLayer.Logging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NLayer.NET.BLL\NLayer.NET.BLL.csproj">
       <Project>{6cfdeb6d-dd02-42e3-a44a-82c35e248c1d}</Project>
       <Name>NLayer.NET.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NLayer.NET.Common\NLayer.NET.Common.csproj">
+    <ProjectReference Include="..\NLayer.NET.Common\NLayer.Common.csproj">
       <Project>{7b311616-843d-42c6-83c0-25243fe70ca1}</Project>
-      <Name>NLayer.NET.Common</Name>
+      <Name>NLayer.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\NLayer.NET.DBL\NLayer.NET.DAL.csproj">
       <Project>{23b32caa-b32f-47a0-b99f-682a07e27721}</Project>

@@ -1,54 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
-using NLayer.NET.BLL.Logger;
+using NLayer.Common;
+using NLayer.DataAccess.DB;
+using NLayer.DataAccess.DB.EF;
+using NLayer.DataAccess.DB.EF.Extensions;
+using NLayer.Logging;
 using NLayer.NET.BLL.Modals;
-using NLayer.NET.Common;
-using NLayer.NET.Common.Intarfeces;
 using NLayer.NET.DBL;
 using NLayer.NET.DBL.Entities;
-using NLayer.NET.DBL.Repositories;
+
 
 namespace NLayer.NET.BLL.Services.Implementation
 {
     public class ExternalDataService : IExternalDataService
     {
-        private readonly IRepository<ExternalData> _userRepository;
-        private readonly ILog<ExternalDataService> _logger;
+        private readonly IRepository<ExternalData> userRepository;
+        private readonly ILog<ExternalDataService> logger;
+        private readonly ITransactionalUnitOfWork uow;
 
-        public ExternalDataService(IUnitOfWork<AppDbContext> unitOfWork, ILogFactory logFactory)
+        public ExternalDataService(IUnitOfWorkFactory unitOfWorkFactory, ILogFactory logFactory)
         {
-            _userRepository = unitOfWork.CreateRepository<ExternalData>();
-            _logger = logFactory.CreateLogger<ExternalDataService>();
+            this.uow = unitOfWorkFactory.Create(typeof(AppDbContext));
+            userRepository = uow.CreateRepository<ExternalData>();
+
+            logger = logFactory.CreateLogger<ExternalDataService>();
         }
 
-        IResult<IList<ExternalDataDTO>> IExternalDataService.GetUsers()
+        ResultModel<IList<ExternalDataDTO>> IExternalDataService.GetUsers()
         {
-            IEnumerable<ExternalData> externalDataList = _userRepository.GetAll();
-            _logger.Info("GET UserRepository.GetAll()");
+            //IEnumerable<ExternalData> externalDataList = userRepository.Query().AsEnumerable();
 
-            IList<ExternalDataDTO> usersListDTO = Mapper.Map<IEnumerable<ExternalData>, IList<ExternalDataDTO>>(externalDataList);
+            //logger.Info("GET UserRepository.GetAll()");
 
-            IResult<IList<ExternalDataDTO>> result = new Result<IList<ExternalDataDTO>>() { Value = usersListDTO };
+            //IList<ExternalDataDTO> usersListDto = Mapper.Map<IEnumerable<ExternalData>, IList<ExternalDataDTO>>(externalDataList);
 
-            return result;
+            return ResultModel<IList<ExternalDataDTO>>.Successful(null);
         }
 
-        IResult<ExternalDataDTO> IExternalDataService.GetUser(Guid userId)
+        ResultModel<ExternalDataDTO> IExternalDataService.GetUser(Guid userId)
         {
-            var querySearch = new SearchQuery<ExternalData>();
-            querySearch.AddFilter(x => x.Id == userId);
-            var externalData = _userRepository.Search(querySearch).FirstOrDefault();
-            _logger.Info("GET UserRepository.Search(querySearch)", querySearch);
+            //var querySearch = new SearchQuery<ExternalData>();
+            //querySearch.AddFilter(x => x.Id == userId);
+            //var externalData = userRepository.Search(querySearch).FirstOrDefault();
+            //logger.Info("GET UserRepository.Search(querySearch)", querySearch);
 
-            ExternalDataDTO externalDataDTO = Mapper.Map<ExternalData, ExternalDataDTO>(externalData);
+            //ExternalDataDTO externalDataDto = Mapper.Map<ExternalData, ExternalDataDTO>(externalData);
 
-            IResult<ExternalDataDTO> result = new Result<ExternalDataDTO>() { Value = externalDataDTO };
-            if (result.Value == null)
-                result.Errors.Add(new Error() { ErrorCode = 404, ErrorMessage = "External Data is not found." });
+            //IResult<ExternalDataDTO> result = new Result<ExternalDataDTO>() { Value = externalDataDto };
+            //if (result.Value == null)
+            //    result.Errors.Add(new Error() { ErrorCode = 404, ErrorMessage = "External Data is not found." });
 
-            return result;
+            return ResultModel<ExternalDataDTO>.Failed();
         }
     }
 }

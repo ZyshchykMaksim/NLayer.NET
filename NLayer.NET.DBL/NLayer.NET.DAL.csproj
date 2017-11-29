@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NLayer.NET.DBL</RootNamespace>
     <AssemblyName>NLayer.NET.DBL</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -64,19 +64,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDbContext.cs" />
-    <Compile Include="DB\DbContextBase.cs" />
-    <Compile Include="DB\EntityBase.cs" />
+    <Compile Include="DbContextBase.cs" />
+    <Compile Include="Entities\EntityBase.cs" />
     <Compile Include="Entities\ExternalData.cs" />
-    <Compile Include="Repositories\Implementation\CachedRepository.cs" />
-    <Compile Include="Cache\CachedDataSource.cs" />
     <Compile Include="Entities\User.cs" />
-    <Compile Include="Repositories\Implementation\Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AppDbInitializer.cs" />
-    <Compile Include="Repositories\IRepository.cs" />
-    <Compile Include="IUnitOfWork.cs" />
-    <Compile Include="SearchQuery.cs" />
-    <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -86,12 +79,11 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NLayer.NET.Common\NLayer.NET.Common.csproj">
+    <ProjectReference Include="..\NLayer.NET.Common\NLayer.Common.csproj">
       <Project>{7b311616-843d-42c6-83c0-25243fe70ca1}</Project>
-      <Name>NLayer.NET.Common</Name>
+      <Name>NLayer.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
