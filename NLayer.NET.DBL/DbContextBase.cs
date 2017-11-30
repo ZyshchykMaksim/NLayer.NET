@@ -5,9 +5,9 @@ using NLayer.DAL.Entities;
 
 namespace NLayer.DAL
 {
-    public abstract class DbContextBase : IdentityDbContext<User>
+    public abstract class IdentityDbContextBase : IdentityDbContext<User>
     {
-        protected DbContextBase(string connectionString) : base(connectionString)
+        protected IdentityDbContextBase(string connectionString) : base(connectionString)
         {
             if (String.IsNullOrWhiteSpace(connectionString))
                 throw new ArgumentException("Invalid connection string");
