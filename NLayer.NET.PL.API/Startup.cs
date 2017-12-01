@@ -14,6 +14,7 @@ using Microsoft.Owin.Security.DataHandler;
 using Microsoft.Owin.Security.DataHandler.Serializer;
 using Microsoft.Owin.Security.DataProtection;
 using NLayer.BLL.Services.Implementation;
+using NLayer.Configuration;
 using NLayer.DataAccess.DB;
 using NLayer.DataAccess.DB.EF;
 using NLayer.DataAccess.DB.EF.Extensions;
@@ -43,7 +44,10 @@ namespace NLayer.PL.API
 
             builder.RegisterType<UnitOfWorkFactory>().As<IUnitOfWorkFactory>().InstancePerLifetimeScope();
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope(); ;
+
             builder.RegisterType<LogFactory>().As<ILogFactory>();
+            builder.RegisterType<ConfigReader>().As<IConfigReader>().SingleInstance();
+
 
             builder.Register(c => new UserStore<User>(c.Resolve<AppDbContext>())).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<RoleStore<IdentityRole>>().As<IRoleStore<IdentityRole, string>>();

@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLayer.Logging", "NLayer.Lo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLayer.Logging.NLog", "NLayer.Logging.NLog\NLayer.Logging.NLog.csproj", "{9169C956-F577-4B69-BB8A-34B7574A5DFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLayer.Configuration", "NLayer.Configuration\NLayer.Configuration.csproj", "{2E126254-4C2C-4781-89FC-E6A4E13DAB8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{9169C956-F577-4B69-BB8A-34B7574A5DFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9169C956-F577-4B69-BB8A-34B7574A5DFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9169C956-F577-4B69-BB8A-34B7574A5DFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E126254-4C2C-4781-89FC-E6A4E13DAB8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E126254-4C2C-4781-89FC-E6A4E13DAB8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E126254-4C2C-4781-89FC-E6A4E13DAB8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E126254-4C2C-4781-89FC-E6A4E13DAB8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +98,7 @@ Global
 		{02FFC82C-C57A-482E-A4B8-8171B2AD2EC8} = {22C65AA8-A67B-41D8-B65E-930695836B15}
 		{C548F3F1-AFFF-4AA2-BFEE-74A6A710B644} = {22C65AA8-A67B-41D8-B65E-930695836B15}
 		{9169C956-F577-4B69-BB8A-34B7574A5DFD} = {22C65AA8-A67B-41D8-B65E-930695836B15}
+		{2E126254-4C2C-4781-89FC-E6A4E13DAB8F} = {22C65AA8-A67B-41D8-B65E-930695836B15}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E0BE51A0-075A-41A7-A24F-312144FEA033}

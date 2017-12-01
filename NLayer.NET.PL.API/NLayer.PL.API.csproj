@@ -267,6 +267,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NLayer.Configuration\NLayer.Configuration.csproj">
+      <Project>{2e126254-4c2c-4781-89fc-e6a4e13dab8f}</Project>
+      <Name>NLayer.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NLayer.DataAccess.DB.EF.Extensions\NLayer.DataAccess.DB.EF.Extensions.csproj">
       <Project>{02ffc82c-c57a-482e-a4b8-8171b2ad2ec8}</Project>
       <Name>NLayer.DataAccess.DB.EF.Extensions</Name>

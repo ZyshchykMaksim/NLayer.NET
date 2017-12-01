@@ -10,6 +10,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.DataProtection;
 using NLayer.BLL.Services.Implementation;
+using NLayer.Configuration;
 using NLayer.DataAccess.DB;
 using NLayer.DataAccess.DB.EF;
 using NLayer.DataAccess.DB.EF.Extensions;
@@ -33,7 +34,9 @@ namespace NLayer.PL
             builder.RegisterType<AppDbContext>().Named<DbContext>("AppDbContext").AsSelf().InstancePerLifetimeScope();
             builder.RegisterType<UnitOfWorkFactory>().As<IUnitOfWorkFactory>().InstancePerLifetimeScope();
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope(); ;
+
             builder.RegisterType<LogFactory>().As<ILogFactory>();
+            builder.RegisterType<ConfigReader>().As<IConfigReader>().SingleInstance();
 
             builder.RegisterType<ApplicationUserStore>().As<IUserStore<User>>().InstancePerLifetimeScope();
             builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerLifetimeScope();
