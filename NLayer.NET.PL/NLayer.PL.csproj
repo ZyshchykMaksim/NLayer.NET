@@ -237,6 +237,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="IoC\Autofac\Modules\ApplicationModule.cs" />
+    <Compile Include="IoC\Autofac\Modules\BusinessLogicModule.cs" />
+    <Compile Include="IoC\Autofac\Modules\DataAccessModule.cs" />
+    <Compile Include="IoC\Autofac\Modules\InfrastructureModule.cs" />
     <Compile Include="Mappings\BLLMapping.cs" />
     <Compile Include="Mappings\PLMapping.cs" />
     <Compile Include="Models\AccountViewModels.cs" />

@@ -236,6 +236,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HealthCheck\ApplicationDatabaseHealthCheck.cs" />
+    <Compile Include="IoC\Autofac\Modules\BusinessLogicModule.cs" />
+    <Compile Include="IoC\Autofac\Modules\DataAccessModule.cs" />
+    <Compile Include="IoC\Autofac\Modules\ApplicationModule.cs" />
+    <Compile Include="IoC\Autofac\Modules\InfrastructureModule.cs" />
     <Compile Include="Mappings\APIMapping.cs" />
     <Compile Include="Middlewares\LoggingMiddleware.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
