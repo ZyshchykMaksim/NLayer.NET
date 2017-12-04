@@ -10,7 +10,7 @@ namespace NLayer.PL.API.Middlewares
     //See https://gist.github.com/vicentedealencar/48dd74e28e7a3584da8aa
 
     /// <summary>
-    /// 
+    /// LoggingMiddleware.
     /// </summary>
     public class LoggingMiddleware : OwinMiddleware
     {

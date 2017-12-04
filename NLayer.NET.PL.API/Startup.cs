@@ -20,6 +20,7 @@ using NLayer.DataAccess.DB.EF;
 using NLayer.DataAccess.DB.EF.Extensions;
 using NLayer.DAL;
 using NLayer.DAL.Entities;
+using NLayer.HealthCheck;
 using NLayer.Logging;
 using NLayer.Logging.NLog;
 using NLayer.PL.API;
@@ -30,15 +31,23 @@ using Owin;
 
 namespace NLayer.PL.API
 {
+    /// <summary>
+    /// Startup.
+    /// </summary>
     public partial class Startup
     {
+        /// <summary>
+        /// Configuration application.
+        /// </summary>
+        /// <param name="app">The application builder.</param>
         public void Configuration(IAppBuilder app)
         {
             var builder = new ContainerBuilder();
-            var config = new HttpConfiguration();
+            var config = GlobalConfiguration.Configuration;
 
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterWebApiFilterProvider(config);
+            builder.RegisterWebApiModelBinderProvider();
 
             builder.RegisterType<AppDbContext>().As<DbContext>().AsSelf().InstancePerLifetimeScope();
 
@@ -47,7 +56,7 @@ namespace NLayer.PL.API
 
             builder.RegisterType<LogFactory>().As<ILogFactory>();
             builder.RegisterType<ConfigReader>().As<IConfigReader>().SingleInstance();
-
+            builder.RegisterType<HealthChecker>().As<IHealthChecker>().SingleInstance();
 
             builder.Register(c => new UserStore<User>(c.Resolve<AppDbContext>())).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<RoleStore<IdentityRole>>().As<IRoleStore<IdentityRole, string>>();

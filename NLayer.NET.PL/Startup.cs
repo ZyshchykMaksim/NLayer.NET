@@ -16,6 +16,7 @@ using NLayer.DataAccess.DB.EF;
 using NLayer.DataAccess.DB.EF.Extensions;
 using NLayer.DAL;
 using NLayer.DAL.Entities;
+using NLayer.HealthCheck;
 using NLayer.Logging;
 using NLayer.Logging.NLog;
 using NLayer.PL;
@@ -37,6 +38,7 @@ namespace NLayer.PL
 
             builder.RegisterType<LogFactory>().As<ILogFactory>();
             builder.RegisterType<ConfigReader>().As<IConfigReader>().SingleInstance();
+            builder.RegisterType<HealthChecker>().As<IHealthChecker>().SingleInstance();
 
             builder.RegisterType<ApplicationUserStore>().As<IUserStore<User>>().InstancePerLifetimeScope();
             builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerLifetimeScope();

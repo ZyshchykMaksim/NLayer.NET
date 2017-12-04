@@ -226,6 +226,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Configurations\IdentityConfiguration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HealthCheckController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
@@ -234,6 +235,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HealthCheck\ApplicationDatabaseHealthCheck.cs" />
     <Compile Include="Mappings\APIMapping.cs" />
     <Compile Include="Middlewares\LoggingMiddleware.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -262,6 +264,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\HealthCheck\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -282,6 +285,10 @@
     <ProjectReference Include="..\NLayer.DataAccess.DB\NLayer.DataAccess.DB.csproj">
       <Project>{483b6506-baf2-4c7c-9e34-188f59d9dcf0}</Project>
       <Name>NLayer.DataAccess.DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NLayer.HealthCheck\NLayer.HealthCheck.csproj">
+      <Project>{1242d208-882f-4c5e-8b67-587182088496}</Project>
+      <Name>NLayer.HealthCheck</Name>
     </ProjectReference>
     <ProjectReference Include="..\NLayer.Logging.NLog\NLayer.Logging.NLog.csproj">
       <Project>{9169c956-f577-4b69-bb8a-34b7574a5dfd}</Project>

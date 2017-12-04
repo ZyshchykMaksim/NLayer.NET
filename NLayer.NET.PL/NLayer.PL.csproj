@@ -328,6 +328,10 @@
       <Project>{483b6506-baf2-4c7c-9e34-188f59d9dcf0}</Project>
       <Name>NLayer.DataAccess.DB</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NLayer.HealthCheck\NLayer.HealthCheck.csproj">
+      <Project>{1242d208-882f-4c5e-8b67-587182088496}</Project>
+      <Name>NLayer.HealthCheck</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NLayer.Logging.NLog\NLayer.Logging.NLog.csproj">
       <Project>{9169c956-f577-4b69-bb8a-34b7574a5dfd}</Project>
       <Name>NLayer.Logging.NLog</Name>

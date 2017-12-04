@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1242D208-882F-4C5E-8B67-587182088496}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NLayer.HealthCheck</RootNamespace>
+    <AssemblyName>NLayer.HealthCheck</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HealthChecker.cs" />
+    <Compile Include="HealthCheckExample.cs" />
+    <Compile Include="IHealthCheck.cs" />
+    <Compile Include="IHealthChecker.cs" />
+    <Compile Include="Models\Enums\CriticalMarking.cs" />
+    <Compile Include="Models\Enums\HealthCheckStatus.cs" />
+    <Compile Include="Models\Exceptions\HealthCheckFailedException.cs" />
+    <Compile Include="Models\Results\BaseIndividualHealthCheckResult.cs" />
+    <Compile Include="Models\Results\FailedIndividualHealthCheckResult.cs" />
+    <Compile Include="Models\Results\OveralHealthCheckResult.cs" />
+    <Compile Include="Models\Results\SuccessfulIndividualHealthCheckResult.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NLayer.Logging.NLog\NLayer.Logging.NLog.csproj">
+      <Project>{9169c956-f577-4b69-bb8a-34b7574a5dfd}</Project>
+      <Name>NLayer.Logging.NLog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NLayer.Logging\NLayer.Logging.csproj">
+      <Project>{c548f3f1-afff-4aa2-bfee-74a6a710b644}</Project>
+      <Name>NLayer.Logging</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

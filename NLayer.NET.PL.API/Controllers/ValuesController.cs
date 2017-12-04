@@ -3,6 +3,9 @@ using System.Web.Http;
 
 namespace NLayer.PL.API.Controllers
 {
+    /// <summary>
+    /// ValuesController.
+    /// </summary>
     [Authorize]
     public class ValuesController : ApiController
     {
